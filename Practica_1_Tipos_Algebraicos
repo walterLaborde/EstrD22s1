@@ -150,3 +150,39 @@ esLunesODomingo :: DiaDeSemana -> Bool
 esLunesODomingo Lunes = True
 esLunesODomingo Domingo = True
 esLunesODomingo otroDia = False
+
+--3 BOOLEANOS
+
+--a) 
+negar :: Bool -> Bool
+--Dado un booleano, si es True devuelve False, y si es False devuelve True.
+--En Haskell ya está definida como not.
+
+negar True  = False
+negar False = True
+
+--b) 
+implica :: Bool -> Bool -> Bool
+--Dados dos booleanos, si el primero es True y el segundo es False, devuelve False, sino
+--devuelve True.
+--Nota: no viene implementada en Haskell.
+
+implica True False = False
+implica _    _     = True
+
+--c) 
+and :: Bool -> Bool -> Bool
+--Dados dos booleanos si ambos son True devuelve True, sino devuelve False.
+--En Haskell ya está definida como \&\&.
+
+and True True = True
+and _    _    = False
+
+--d) 
+or :: Bool -> Bool -> Bool
+--Dados dos booleanos si alguno de ellos es True devuelve True, sino devuelve False.
+--En Haskell ya está definida como ||.
+
+or True _    = True
+or _    True = True
+or _    _    = False
