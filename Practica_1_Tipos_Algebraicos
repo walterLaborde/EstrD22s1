@@ -186,3 +186,45 @@ or :: Bool -> Bool -> Bool
 or True _    = True
 or _    True = True
 or _    _    = False
+
+-- 3 REGISTROS
+
+data Persona = P String Int
+             --  Nombre edad
+
+nombre :: Persona -> String
+--Devuelve el nombre de una persona
+
+nombre (P n e) = n
+
+edad :: Persona -> Int
+--Devuelve la edad de una persona
+
+edad (P n e) = e
+
+crecer :: Persona -> Persona
+--Aumenta en uno la edad de la persona.
+
+crecer (P n e) = P n (e+1)
+
+cambioDeNombre :: String -> Persona -> Persona
+--Dados un nombre y una persona, devuelve una persona con la edad de la persona y el
+--nuevo nombre.
+
+cambioDeNombre newN (P n e) = P newN e
+
+yo = P "Walter" 45
+
+esMayorQueLaOtra :: Persona -> Persona -> Bool
+--Dadas dos personas indica si la primera es mayor que la segunda.
+
+esMayorQueLaOtra p1 p2 = edad p1 > edad p2
+
+laQueEsMayor :: Persona -> Persona -> Persona
+--Dadas dos personas devuelve a la persona que sea mayor.
+
+laQueEsMayor p1 p2 = if(esMayorQueLaOtra p1 p2)
+                        then p1
+                        else p2
+
+sil = P "Silvi" 36
