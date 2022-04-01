@@ -322,3 +322,50 @@ Son polimórficas porque puedo completar los parámetros con cualquier tipo de d
 cada función NO está RESTRINGIDA a un tipo de dato específico y con eso doy por sentado que no me 
 interesa trabajar con el dato.
 -}
+
+-- 5 PATTERN MATCHING SOBRE LISTAS
+
+--1. 
+
+--Defina las siguientes funciones polimórficas utilizando pattern matching sobre listas (no
+--utilizar las funciones que ya vienen con Haskell):
+
+--2. 
+
+estaVacia :: [a] -> Bool
+--Dada una lista de elementos, si es vacía devuelve True, sino devuelve False.
+--Definida en Haskell como null.
+
+estaVacia [] = True
+estaVacia _  = False
+
+--3. 
+
+elPrimero :: [a] -> a
+--Dada una lista devuelve su primer elemento.
+--Definida en Haskell como head.
+--Nota: tener en cuenta que el constructor de listas es :
+
+elPrimero (x:_) = x
+elPrimero _     = error "No puede ser lista Vacia"
+
+--4. 
+
+sinElPrimero :: [a] -> [a]
+--Dada una lista devuelve esa lista menos el primer elemento.
+--Definida en Haskell como tail.
+--Nota: tener en cuenta que el constructor de listas es :
+
+sinElPrimero (x:xs) = xs
+sinElPrimero _      = error "No puede ser lista Vacia"
+
+
+--5. 
+
+splitHead :: [a] -> (a, [a])
+--Dada una lista devuelve un par, donde la primera componente es el primer elemento de la
+--lista, y la segunda componente es esa lista pero sin el primero.
+--Nota: tener en cuenta que el constructor de listas es :
+
+splitHead (x:xs) = (x,sinElPrimero(x:xs))
+splitHead _      = error "No puede ser lista vacia"
