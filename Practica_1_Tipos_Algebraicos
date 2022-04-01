@@ -82,3 +82,71 @@ siguiente d = case d of
 {- Dada una dirección devuelve su siguiente, en sentido horario, y suponiendo que no existe
 la siguiente dirección a Oeste. ¿Posee una precondición esta función? ¿Es una función
 total o parcial? ¿Por qué? -}
+
+-- 2. Definir el tipo de dato DiaDeSemana, con las alternativas Lunes, Martes, Miércoles, Jueves,
+-- Viernes, Sabado y Domingo. Supongamos que el primer día de la semana es lunes, y el último
+-- es domingo. Luego implementar las siguientes funciones:
+
+data DiaDeSemana = Lunes | Martes | Miercoles | Jueves | Viernes | Sabado | Domingo
+
+-- a) 
+primeroYUltimoDia :: (DiaDeSemana, DiaDeSemana)
+-- Devuelve un par donde la primera componente es el primer día de la semana, y la
+-- segunda componente es el último día de la semana.
+
+primerDia :: DiaDeSemana
+primerDia = Lunes
+
+ultimoDia :: DiaDeSemana
+ultimoDia = Domingo
+
+primeroYUltimoDia = (primerDia, ultimoDia)
+
+--b) 
+empiezaConM :: DiaDeSemana -> Bool
+--Dado un dia de la semana indica si comienza con la letra M.
+
+{-
+opción 1
+empiezaConM Martes    = True
+empiezaConM Miercoles = True
+empiezaConM otroDia   = False
+-}
+
+-- opción 2
+
+empiezaConM d = esMartesOMiercoles d
+
+esMartesOMiercoles :: DiaDeSemana -> Bool
+esMartesOMiercoles Martes    = True
+esMartesOMiercoles Miercoles = True 
+esMartesOMiercoles otroDia   = False
+
+
+--c) 
+vieneDespues :: DiaDeSemana -> DiaDeSemana -> Bool
+--Dado dos dias de semana, indica si el primero viene después que el segundo.
+
+vieneDespues d1 d2 = diaEnNumero d1 > diaEnNumero d2
+
+diaEnNumero :: DiaDeSemana -> Int
+
+diaEnNumero Lunes     = 1
+diaEnNumero Martes    = 2
+diaEnNumero Miercoles = 3
+diaEnNumero Jueves    = 4
+diaEnNumero Viernes   = 5
+diaEnNumero Sabado    = 6
+diaEnNumero Domingo   = 7
+
+
+--d) 
+estaEnElMedio :: DiaDeSemana -> Bool
+--Dado un dia de la semana indica si no es ni el primer ni el ultimo dia.
+
+estaEnElMedio d = not (esLunesODomingo d)
+
+esLunesODomingo :: DiaDeSemana -> Bool
+esLunesODomingo Lunes = True
+esLunesODomingo Domingo = True
+esLunesODomingo otroDia = False
