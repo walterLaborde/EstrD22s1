@@ -228,3 +228,66 @@ laQueEsMayor p1 p2 = if(esMayorQueLaOtra p1 p2)
                         else p2
 
 sil = P "Silvi" 36
+
+-- POKEMON
+
+data Pokemon = Pok TipoDePokemon Int
+            --     TipoDePokemon Energia
+
+data TipoDePokemon = Agua | Fuego | Planta
+
+data Entrenador = E String Pokemon Pokemon
+
+superaA :: Pokemon -> Pokemon -> Bool
+--Dados dos Pokémon indica si el primero, en base al tipo, es superior al segundo. Agua
+--supera a fuego, fuego a planta y planta a agua. Y cualquier otro caso es falso.
+
+-- una opcion 1 paso a los Pokemones por parametro y le saco el tipo del otro lado del =
+-- pero eso me obliga a generar la funcion observadora "TipoDePokemon"
+
+--superaA p1 p2 = esSuperiorElTipo (tipo p1) (tipo p2)
+
+-- en esta opcion 2 DESARMO EL REGISTRO... es decir, digo: del Pokemon que recibo como 
+-- argumento.. solo me interesa el TipoDePokemon y el otro parametro no.. y comparo los Tipos
+superaA (Pok t1 _) (Pok t2 _) = esSuperiorElTipo t1 t2
+
+esSuperiorElTipo :: TipoDePokemon -> TipoDePokemon -> Bool
+
+esSuperiorElTipo Agua Fuego   = True
+esSuperiorElTipo Fuego Planta = True
+esSuperiorElTipo Planta Agua  = True
+esSuperiorElTipo _      _     = False
+
+-- aca hago el observador para la opcion de solucion 1 
+tipo :: Pokemon -> TipoDePokemon
+tipo (Pok t e) = t
+
+pokeOne = Pok Agua 28
+pokeTwo = Pok Fuego 33
+
+jorge = E "George" pokeOne pokeTwo
+clarisa = E "Clari" pokeTwo pokeTwo
+
+cantidadDePokemonDe :: TipoDePokemon -> Entrenador -> Int
+--Devuelve la cantidad de Pokémon de determinado tipo que posee el entrenador.
+
+cantidadDePokemonDe t (E n p1 p2) = unoSi(esDelMisoTipo t (tipo p1)) 
+                                  + unoSi(esDelMisoTipo t (tipo p2))   
+
+esDelMisoTipo :: TipoDePokemon -> TipoDePokemon -> Bool
+esDelMisoTipo Agua Agua     = True
+esDelMisoTipo Fuego Fuego   = True
+esDelMisoTipo Planta Planta = True
+esDelMisoTipo _      _      = False
+
+unoSi :: Bool -> Int
+unoSi True  = 1
+unoSi False = 0
+
+juntarPokemon :: (Entrenador, Entrenador) -> [Pokemon]
+--Dado un par de entrenadores, devuelve a sus Pokémon en una lista.
+
+juntarPokemon (e1,e2) = pokemonDe e1 ++ pokemonDe e2
+
+pokemonDe :: Entrenador -> [Pokemon]
+pokemonDe (E n p1 p2) = p1:p2:[]
