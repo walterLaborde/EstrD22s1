@@ -291,3 +291,34 @@ juntarPokemon (e1,e2) = pokemonDe e1 ++ pokemonDe e2
 
 pokemonDe :: Entrenador -> [Pokemon]
 pokemonDe (E n p1 p2) = p1:p2:[]
+
+-- 4 FUNCIONES POLIMORFICAS
+
+--a) 
+
+loMismo :: a -> a
+--Dado un elemento de algún tipo devuelve ese mismo elemento.
+
+loMismo x = x
+
+--b) 
+
+siempreSiete :: a -> Int
+--Dado un elemento de algún tipo devuelve el número 7.
+
+siempreSiete x = 7
+
+--c) 
+swap :: (a,b) -> (b, a)
+--Dadas una tupla, invierte sus componentes.
+
+swap (x,y) = (y,x)
+
+--¿Por qué existen dos variables de tipo diferentes?
+--2. Responda la siguiente pregunta: ¿Por qué estas funciones son polimórficas?
+
+{-
+Son polimórficas porque puedo completar los parámetros con cualquier tipo de dato. Es decir, 
+cada función NO está RESTRINGIDA a un tipo de dato específico y con eso doy por sentado que no me 
+interesa trabajar con el dato.
+-}
