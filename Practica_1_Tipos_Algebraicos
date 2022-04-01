@@ -41,3 +41,44 @@ maxDelPar (n,m) = if (n>m)
 -- maxDelPar(divisionYResto (sumar 9 1) (sucesor 0))
 
 -- sumar 0 (maxDelPar(divisionYResto (sumar 9 1) (sucesor 0)))
+
+
+--2. Tipos enumerativos
+
+-- 1. Definir el tipo de dato Dir, con las alternativas Norte, Sur, Este y Oeste. Luego implementar
+-- las siguientes funciones:
+
+data Dir = Norte | Este | Sur | Oeste
+
+-- a) 
+opuesto :: Dir -> Dir
+--Dada una dirección devuelve su opuesta.
+
+opuesto d = case d of
+    Norte -> Sur
+    Este  -> Oeste
+    Sur   -> Norte
+    Oeste -> Este 
+
+-- b) 
+iguales :: Dir -> Dir -> Bool
+-- Dadas dos direcciones, indica si son la misma. Nota: utilizar pattern matching y no ==.
+
+iguales Norte Norte = True
+iguales Este Este   = True
+iguales Sur Sur     = True
+iguales Oeste Oeste = True
+iguales d1    d2    = False    
+
+-- c) 
+siguiente :: Dir -> Dir
+
+siguiente d = case d of 
+    Norte -> Este
+    Este  -> Sur
+    Sur   -> Oeste
+    Oeste -> Norte 
+
+{- Dada una dirección devuelve su siguiente, en sentido horario, y suponiendo que no existe
+la siguiente dirección a Oeste. ¿Posee una precondición esta función? ¿Es una función
+total o parcial? ¿Por qué? -}
