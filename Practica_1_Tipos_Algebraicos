@@ -175,8 +175,8 @@ and :: Bool -> Bool -> Bool
 --Dados dos booleanos si ambos son True devuelve True, sino devuelve False.
 --En Haskell ya está definida como \&\&.
 
-and True True = True
-and b    c    = False
+and True b = b
+and _    _ = False
 
 --d) 
 or :: Bool -> Bool -> Bool
