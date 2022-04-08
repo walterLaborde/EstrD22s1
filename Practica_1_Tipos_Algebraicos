@@ -176,7 +176,7 @@ and :: Bool -> Bool -> Bool
 --En Haskell ya está definida como \&\&.
 
 and True True = True
-and _    _    = False
+and b    c    = False
 
 --d) 
 or :: Bool -> Bool -> Bool
