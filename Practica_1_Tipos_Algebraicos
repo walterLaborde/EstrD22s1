@@ -183,9 +183,9 @@ or :: Bool -> Bool -> Bool
 --Dados dos booleanos si alguno de ellos es True devuelve True, sino devuelve False.
 --En Haskell ya está definida como ||.
 
-or True _    = True
-or _    True = True
-or _    _    = False
+or True b = True
+or _    b = b
+
 
 -- 3 REGISTROS
 
