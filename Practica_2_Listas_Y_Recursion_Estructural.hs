@@ -12,3 +12,9 @@ sumatoria (n:ns) = n + sumatoria ns
 longitud :: [a] -> Int
 longitud []     = 0
 longitud (n:ns) = 1 + longitud ns
+
+-- 3. sucesores
+
+sucesores :: [Int] -> [Int]
+sucesores []     = []
+sucesores (n:ns) = n+1 : sucesores ns
