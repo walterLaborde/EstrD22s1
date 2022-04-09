@@ -126,3 +126,10 @@ cuentaRegresiva n = n : cuentaRegresiva(n-1)
 repetir :: Int -> a -> [a]
 repetir 0 _ = []
 repetir n e = e : repetir (n-1) e 
+
+-- 4. losPrimeros 
+
+losPrimeros :: Int -> [a] -> [a]
+losPrimeros 0  _     = []
+losPrimeros n []     = []
+losPrimeros n (x:xs) = x : losPrimeros (n-1) xs
