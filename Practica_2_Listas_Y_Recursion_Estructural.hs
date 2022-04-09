@@ -137,12 +137,9 @@ losPrimeros n (x:xs) = x : losPrimeros (n-1) xs
 -- 5. sinLosPrimeros
 
 sinLosPrimeros :: Int -> [a] -> [a]
--- PRECOND : La lista tiene, al menos, n elementos.
-sinLosPrimeros 0 xs      = xs 
-sinLosPrimeros n []     = error " la lista debe tener n elementos"
-sinLosPrimeros n (x:xs) =  if (longitud (x:xs) < n) 
-                                then error " la lista debe tener n elementos"
-                                else sinLosPrimeros (n-1) xs
+sinLosPrimeros 0 xs     = xs 
+sinLosPrimeros n []     = []
+sinLosPrimeros n (x:xs) = sinLosPrimeros (n-1) xs
 
 -- REGISTROS 
 
