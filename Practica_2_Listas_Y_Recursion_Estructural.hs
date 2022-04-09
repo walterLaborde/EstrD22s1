@@ -86,3 +86,16 @@ reversa :: [a] -> [a]
 reversa []     = []
 reversa (x:xs) = agregarAlFinal (reversa xs) x
 
+-- 14. zipMaximos
+
+zipMaximos :: [Int] -> [Int] -> [Int]
+
+zipMaximos xs     []     = xs
+zipMaximos []     ys     = ys
+zipMaximos (x:xs) (y:ys) = maximoEntre x y : zipMaximos xs ys
+
+maximoEntre :: Int -> Int -> Int
+maximoEntre x y = if x > y 
+                    then x
+                    else y
+
