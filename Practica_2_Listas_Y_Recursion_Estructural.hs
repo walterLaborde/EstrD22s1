@@ -80,3 +80,9 @@ concatenar :: [a] -> [a] -> [a]
 concatenar []     ys = ys
 concatenar (x:xs) ys = x : concatenar xs ys
 
+-- 13. reversa
+
+reversa :: [a] -> [a]
+reversa []     = []
+reversa (x:xs) = agregarAlFinal (reversa xs) x
+
