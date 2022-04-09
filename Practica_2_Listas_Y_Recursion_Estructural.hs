@@ -106,3 +106,11 @@ elMinimo :: Ord a => [a] -> a
 elMinimo []     = error "la lista no puede ser vacia"
 elMinimo (x:[]) = x
 elMinimo (x:xs) = elMinimo xs
+
+-- RECURSION SOBRE NUMEROS
+
+-- 1. factorial
+
+factorial :: Int -> Int
+factorial 0 = 1
+factorial n = n * factorial (n-1)
