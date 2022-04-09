@@ -30,3 +30,9 @@ conjuncion (b:bs) = b && conjuncion bs
 disyuncion :: [Bool] -> Bool
 disyuncion []     = False
 disyuncion (b:bs) = b || disyuncion bs
+
+-- 6. aplanar
+
+aplanar:: [[a]] -> [a]
+aplanar []       = []
+aplanar (xs:xss) = xs ++ aplanar xss
