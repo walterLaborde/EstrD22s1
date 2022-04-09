@@ -161,3 +161,10 @@ promedioEdad (p:ps) = div (sumatoria(edades(p:ps))) (longitud(p:ps))
 edades :: [Persona] -> [Int]
 edades (p:[]) = [edad p] 
 edades (p:ps) = edad p : edades ps
+
+-- elMasViejo
+
+elMasViejo :: [Persona] -> Persona
+elMasViejo []     = error "la lista no puede ser vacia"
+elMasViejo (p:[]) = p
+elMasViejo (p:ps) = laQueEsMayor p (elMasViejo ps)
