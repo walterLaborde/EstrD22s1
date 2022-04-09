@@ -36,3 +36,9 @@ disyuncion (b:bs) = b || disyuncion bs
 aplanar:: [[a]] -> [a]
 aplanar []       = []
 aplanar (xs:xss) = xs ++ aplanar xss
+
+-- 7. pertenece
+
+pertenece :: Eq a => a -> [a] -> Bool
+pertenece e []     = False
+pertenece e (x:xs) = e==x || pertenece e xs
