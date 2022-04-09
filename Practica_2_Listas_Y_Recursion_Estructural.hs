@@ -120,3 +120,9 @@ factorial n = n * factorial (n-1)
 cuentaRegresiva :: Int -> [Int]
 cuentaRegresiva 0 = []
 cuentaRegresiva n = n : cuentaRegresiva(n-1)
+
+-- 3. repetir
+
+repetir :: Int -> a -> [a]
+repetir 0 _ = []
+repetir n e = e : repetir (n-1) e 
