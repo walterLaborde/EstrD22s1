@@ -42,3 +42,13 @@ aplanar (xs:xss) = xs ++ aplanar xss
 pertenece :: Eq a => a -> [a] -> Bool
 pertenece e []     = False
 pertenece e (x:xs) = e==x || pertenece e xs
+
+-- 8. apariciones 
+
+apariciones :: Eq a => a -> [a] -> Int
+apariciones e []     = 0
+apariciones e (x:xs) = unoSi(x==e) + apariciones e xs
+
+unoSi :: Bool -> Int
+unoSi True  = 1
+unoSi False = 0
