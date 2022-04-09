@@ -114,3 +114,9 @@ elMinimo (x:xs) = elMinimo xs
 factorial :: Int -> Int
 factorial 0 = 1
 factorial n = n * factorial (n-1)
+
+-- 2. cuentaRegresiva
+
+cuentaRegresiva :: Int -> [Int]
+cuentaRegresiva 0 = []
+cuentaRegresiva n = n : cuentaRegresiva(n-1)
