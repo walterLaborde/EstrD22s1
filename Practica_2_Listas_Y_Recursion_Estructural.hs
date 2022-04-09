@@ -24,3 +24,9 @@ sucesores (n:ns) = n+1 : sucesores ns
 conjuncion :: [Bool] -> Bool
 conjuncion []     = True
 conjuncion (b:bs) = b && conjuncion bs
+
+-- 5. disyuncion
+
+disyuncion :: [Bool] -> Bool
+disyuncion []     = False
+disyuncion (b:bs) = b || disyuncion bs
