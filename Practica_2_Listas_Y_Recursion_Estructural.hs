@@ -143,6 +143,26 @@ sinLosPrimeros n (x:xs) = sinLosPrimeros (n-1) xs
 
 -- REGISTROS 
 
+-- Personas
+
+data Persona = P String Int
+            --   Nombre Edad
+
+nombre :: Persona -> String
+nombre (P n e) = n
+
+edad :: Persona -> Int
+edad (P n e) = e
+
+esMayorQueLaOtra :: Persona -> Persona -> Bool
+esMayorQueLaOtra p1 p2 = edad p1 > edad p2
+
+laQueEsMayor :: Persona -> Persona -> Persona
+laQueEsMayor p1 p2 = if(esMayorQueLaOtra p1 p2)
+                        then p1
+                        else p2
+
+
 -- mayoresA
 
 mayoresA :: Int -> [Persona] -> [Persona]
