@@ -99,3 +99,10 @@ maximoEntre x y = if x > y
                     then x
                     else y
 
+-- 15. elMinimo
+
+elMinimo :: Ord a => [a] -> a
+-- PRECOND : la lista no puede ser vacia 
+elMinimo []     = error "la lista no puede ser vacia"
+elMinimo (x:[]) = x
+elMinimo (x:xs) = elMinimo xs
