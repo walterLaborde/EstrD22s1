@@ -143,3 +143,14 @@ sinLosPrimeros n []     = error " la lista debe tener n elementos"
 sinLosPrimeros n (x:xs) =  if (longitud (x:xs) < n) 
                                 then error " la lista debe tener n elementos"
                                 else sinLosPrimeros (n-1) xs
+
+-- REGISTROS 
+
+-- mayoresA
+
+mayoresA :: Int -> [Persona] -> [Persona]
+mayoresA 0 ps     = ps
+mayoresA n []     = []
+mayoresA n (p:ps) = if (edad (p) > n) 
+                        then p : mayoresA n ps
+                        else mayoresA n ps 
