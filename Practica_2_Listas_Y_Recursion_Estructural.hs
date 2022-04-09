@@ -60,3 +60,11 @@ losMenoresA n []     = []
 losMenoresA n (x:xs) = if x<n 
                         then x : losMenoresA n xs 
                         else losMenoresA n xs 
+
+-- 10. lasDeLongitudMayorA :: Int -> [[a]] -> [[a]]
+
+lasDeLongitudMayorA n []       = []
+lasDeLongitudMayorA n (xs:xss) = if longitud xs > n 
+                                    then xs : lasDeLongitudMayorA n xss
+                                    else lasDeLongitudMayorA n xss
+
