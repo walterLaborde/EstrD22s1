@@ -52,3 +52,11 @@ apariciones e (x:xs) = unoSi(x==e) + apariciones e xs
 unoSi :: Bool -> Int
 unoSi True  = 1
 unoSi False = 0
+
+-- 9. losMenoresA
+
+losMenoresA :: Int -> [Int] -> [Int]
+losMenoresA n []     = []
+losMenoresA n (x:xs) = if x<n 
+                        then x : losMenoresA n xs 
+                        else losMenoresA n xs 
