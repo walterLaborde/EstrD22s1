@@ -188,3 +188,22 @@ elMasViejo :: [Persona] -> Persona
 elMasViejo []     = error "la lista no puede ser vacia"
 elMasViejo (p:[]) = p
 elMasViejo (p:ps) = laQueEsMayor p (elMasViejo ps)
+
+
+-- POKEMON Y Entrenador
+
+data TipoDePokemon = Agua | Fuego | Planta
+    deriving Eq
+data Pokemon = ConsPokemon TipoDePokemon Int
+data Entrenador = ConsEntrenador String [Pokemon]
+
+
+-- casos de uso 
+
+pokeOne   = ConsPokemon Agua   28
+pokeTwo   = ConsPokemon Fuego  45
+pokeThree = ConsPokemon Planta 30
+pokeFour  = ConsPokemon Planta 33
+
+jorge   = ConsEntrenador "George" [pokeOne,pokeTwo,pokeThree,pokeFour]
+clarisa = ConsEntrenador "Clari"  [pokeTwo,pokeThree]
