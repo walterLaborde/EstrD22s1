@@ -213,3 +213,16 @@ clarisa = ConsEntrenador "Clari"  [pokeTwo,pokeThree]
 
 cantPokemon :: Entrenador -> Int
 cantPokemon (ConsEntrenador n ps) = longitud ps 
+
+-- cantPokemonDe 
+
+cantPokemonDe :: TipoDePokemon -> Entrenador -> Int
+cantPokemonDe t (ConsEntrenador n ps) = apariciones t (tiposDePokemones ps)
+
+tiposDePokemones :: [Pokemon] -> [TipoDePokemon]
+tiposDePokemones []     = []
+tiposDePokemones (p:ps) = tipo p : tiposDePokemones ps
+
+tipo :: Pokemon -> TipoDePokemon
+tipo (ConsPokemon t e) = t
+ 
