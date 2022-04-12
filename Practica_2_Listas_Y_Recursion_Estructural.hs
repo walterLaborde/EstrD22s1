@@ -225,4 +225,12 @@ tiposDePokemones (p:ps) = tipo p : tiposDePokemones ps
 
 tipo :: Pokemon -> TipoDePokemon
 tipo (ConsPokemon t e) = t
- 
+
+-- losQueGanan
+losQueLeGanan :: TipoDePokemon -> Entrenador -> Entrenador -> Int
+--losQueLeGanan t (ConsEntrenador n1 []) (ConsEntrenador n2 ps2)) = 0
+--losQueLeGanan t (ConsEntrenador n1 ps1) (ConsEntrenador n2 []) = cantPokemonDe t (ConsEntrenador n1 ps1)
+losQueLeGanan t (ConsEntrenador n1 ps1) (ConsEntrenador n2 ps2) = if (cantPokemonDe t (ConsEntrenador n1 ps1) > 
+                                                                              cantPokemonDe t (ConsEntrenador n2 ps2))
+                                                                                then cantPokemonDe t (ConsEntrenador n1 ps1)
+                                                                                else 0
