@@ -167,7 +167,6 @@ laQueEsMayor p1 p2 = if(esMayorQueLaOtra p1 p2)
 -- mayoresA
 
 mayoresA :: Int -> [Persona] -> [Persona]
-mayoresA 0 ps     = ps
 mayoresA n []     = []
 mayoresA n (p:ps) = if (edad (p) > n) 
                         then p : mayoresA n ps
