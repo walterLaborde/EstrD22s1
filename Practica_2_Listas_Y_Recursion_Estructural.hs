@@ -234,3 +234,12 @@ losQueLeGanan t (ConsEntrenador n1 ps1) (ConsEntrenador n2 ps2) = if (cantPokemo
                                                                               cantPokemonDe t (ConsEntrenador n2 ps2))
                                                                                 then cantPokemonDe t (ConsEntrenador n1 ps1)
                                                                                 else 0
+
+-- esMaestroPokemon
+
+esMaestroPokemon :: Entrenador -> Bool
+esMaestroPokemon (ConsEntrenador n [])     =  False
+esMaestroPokemon (ConsEntrenador n (p:ps)) =  pertenece Agua   (tiposDePokemones (p:ps)) &&
+                                              pertenece Fuego  (tiposDePokemones (p:ps)) &&
+                                              pertenece Planta (tiposDePokemones (p:ps))
+
