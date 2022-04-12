@@ -207,3 +207,9 @@ pokeFour  = ConsPokemon Planta 33
 
 jorge   = ConsEntrenador "George" [pokeOne,pokeTwo,pokeThree,pokeFour]
 clarisa = ConsEntrenador "Clari"  [pokeTwo,pokeThree]
+
+
+-- cantPokemon 
+
+cantPokemon :: Entrenador -> Int
+cantPokemon (ConsEntrenador n ps) = longitud ps 
