@@ -90,8 +90,8 @@ reversa (x:xs) = agregarAlFinal (reversa xs) x
 
 zipMaximos :: [Int] -> [Int] -> [Int]
 
-zipMaximos xs     []     = xs
 zipMaximos []     ys     = ys
+zipMaximos xs     []     = xs
 zipMaximos (x:xs) (y:ys) = maximoEntre x y : zipMaximos xs ys
 
 maximoEntre :: Int -> Int -> Int
