@@ -175,7 +175,6 @@ mayoresA n (p:ps) = if (edad (p) > n)
 -- promedioEdad
 
 promedioEdad :: [Persona] -> Int
-promedioEdad (p:[]) = edad p 
 promedioEdad (p:ps) = div (sumatoria(edades(p:ps))) (longitud(p:ps))
 
 edades :: [Persona] -> [Int]
