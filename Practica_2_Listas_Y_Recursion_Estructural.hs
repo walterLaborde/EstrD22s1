@@ -260,3 +260,23 @@ dev3 = Developer  Junior     (ConsProyecto "proy3")
 mgm1 = Management Senior     (ConsProyecto "proy2")
 
 ivm = ConsEmpresa [dev1,dev2,dev3,mgm1]
+
+-- proyectos 
+
+proyectos :: Empresa -> [Proyecto]
+proyectos (ConsEmpresa rs) = sinRepetidos(proyectosDeRoles rs)
+
+proyectosDeRoles :: [Rol] -> [Proyecto]
+proyectosDeRoles []     = []
+proyectosDeRoles (r:rs) = (proyecto r) : proyectosDeRoles rs
+
+proyecto :: Rol -> Proyecto
+proyecto (Developer _ p)   = p
+proyecto (Management _  p) = p
+
+sinRepetidos :: Eq a => [a] -> [a]
+sinRepetidos []     = []
+sinRepetidos (x:xs) = if(pertenece x xs)
+                        then sinRepetidos xs
+                        else x : sinRepetidos xs 
+
