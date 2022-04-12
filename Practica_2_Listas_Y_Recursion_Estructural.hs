@@ -243,3 +243,20 @@ esMaestroPokemon (ConsEntrenador n (p:ps)) =  pertenece Agua   (tiposDePokemones
                                               pertenece Fuego  (tiposDePokemones (p:ps)) &&
                                               pertenece Planta (tiposDePokemones (p:ps))
 
+
+-- ROL Y EMPRESA
+
+data Seniority = Junior | SemiSenior | Senior
+data Proyecto = ConsProyecto String
+  deriving Eq
+data Rol = Developer Seniority Proyecto | Management Seniority Proyecto
+data Empresa = ConsEmpresa [Rol]
+
+-- casos de uso
+
+dev1 = Developer  Junior     (ConsProyecto "proy1")
+dev2 = Developer  SemiSenior (ConsProyecto "proy1")
+dev3 = Developer  Junior     (ConsProyecto "proy3")
+mgm1 = Management Senior     (ConsProyecto "proy2")
+
+ivm = ConsEmpresa [dev1,dev2,dev3,mgm1]
