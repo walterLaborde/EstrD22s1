@@ -275,7 +275,12 @@ proyecto (Management _  p) = p
 
 sinRepetidos :: Eq a => [a] -> [a]
 sinRepetidos []     = []
-sinRepetidos (x:xs) = if(pertenece x xs)
-                        then sinRepetidos xs
-                        else x : sinRepetidos xs 
+sinRepetidos (x:xs) = agregarSiHaceFalta x (sinRepetidos xs) 
+
+agregarSiHaceFalta :: Eq a => a -> [a] -> [a]
+agregarSiHaceFalta x ys = if(pertenece x ys)
+                        then sinRepetidos ys
+                        else x : sinRepetidos ys 
+
+
 
