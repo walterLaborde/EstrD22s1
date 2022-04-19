@@ -175,7 +175,8 @@ mayoresA n (p:ps) = if (edad (p) > n)
 -- promedioEdad
 
 promedioEdad :: [Persona] -> Int
-promedioEdad (p:ps) = div (sumatoria(edades(p:ps))) (longitud(p:ps))
+promedioEdad [] = error"No se puede dividir por cero"
+promedioEdad ps = div (sumatoria(edades(ps))) (longitud(ps))
 
 edades :: [Persona] -> [Int]
 edades (p:[]) = [edad p] 
