@@ -226,14 +226,30 @@ tiposDePokemones (p:ps) = tipo p : tiposDePokemones ps
 tipo :: Pokemon -> TipoDePokemon
 tipo (ConsPokemon t e) = t
 
--- losQueGanan
+-- losQueLeGanan
+
 losQueLeGanan :: TipoDePokemon -> Entrenador -> Entrenador -> Int
---losQueLeGanan t (ConsEntrenador n1 []) (ConsEntrenador n2 ps2)) = 0
---losQueLeGanan t (ConsEntrenador n1 ps1) (ConsEntrenador n2 []) = cantPokemonDe t (ConsEntrenador n1 ps1)
-losQueLeGanan t (ConsEntrenador n1 ps1) (ConsEntrenador n2 ps2) = if (cantPokemonDe t (ConsEntrenador n1 ps1) > 
-                                                                              cantPokemonDe t (ConsEntrenador n2 ps2))
-                                                                                then cantPokemonDe t (ConsEntrenador n1 ps1)
+losQueLeGanan t e1 e2 = cuantosPokeTipoLeGanaATodos t e1 e2
+
+cuantosPokeTipoLeGanaATodos :: TipoDePokemon -> Entrenador -> Entrenador -> Int
+cuantosPokeTipoLeGanaATodos t (ConsEntrenador _ []) (ConsEntrenador _ ps2)  = 0
+cuantosPokeTipoLeGanaATodos t (ConsEntrenador _ ps1) (ConsEntrenador _ ps2) = if(tipoLeGanaATodos t ps2) 
+                                                                                then cantTipo t ps1
                                                                                 else 0
+
+tipoLeGanaATodos :: TipoDePokemon -> [Pokemon] -> Bool
+tipoLeGanaATodos t (p:ps) = True
+tipoLeGanaATodos t (p:ps) = esSuperiorElTipo t (tipo p) && tipoLeGanaATodos t ps
+
+cantTipo :: TipoDePokemon -> [Pokemon] -> Int
+cantTipo t []     = 0
+cantTipo t (p:ps) = unoSi(esDelMisoTipo t (tipo p)) + cantTipo t ps
+
+esDelMisoTipo :: TipoDePokemon -> TipoDePokemon -> Bool
+esDelMisoTipo Agua Agua     = True
+esDelMisoTipo Fuego Fuego   = True
+esDelMisoTipo Planta Planta = True
+esDelMisoTipo _      _      = False
 
 -- esMaestroPokemon
 
