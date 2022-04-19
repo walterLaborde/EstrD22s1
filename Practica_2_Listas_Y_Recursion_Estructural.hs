@@ -299,4 +299,13 @@ esDevSenior _                     = False
 trabajaEn :: Rol -> [Proyecto] -> Bool
 trabajaEn r ps = pertenece (proyecto r) ps
 
+-- cantQueTrabajanEn
+
+cantQueTrabajanEn :: [Proyecto] -> Empresa -> Int
+cantQueTrabajanEn [] (ConsEmpresa rs) = 0
+cantQueTrabajanEn ps (ConsEmpresa rs) = losEmpleadosEnProyectos rs ps
+
+losEmpleadosEnProyectos :: [Rol] -> [Proyecto] -> Int
+losEmpleadosEnProyectos []     ps = 0
+losEmpleadosEnProyectos (r:rs) ps = unoSi(trabajaEn r ps) + losEmpleadosEnProyectos rs ps
 
