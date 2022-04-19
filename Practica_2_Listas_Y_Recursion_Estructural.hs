@@ -294,8 +294,7 @@ losDevsSeniorEnProyectos (r:rs) ps = unoSi (esDevSenior r && trabajaEn r ps) +
 
 esDevSenior :: Rol -> Bool
 esDevSenior (Developer  Senior _) = True
-esDevSenior (Developer  _      _) = False
-esDevSenior (Management _      _) = False
+esDevSenior _                     = False
 
 trabajaEn :: Rol -> [Proyecto] -> Bool
 trabajaEn r ps = pertenece (proyecto r) ps
