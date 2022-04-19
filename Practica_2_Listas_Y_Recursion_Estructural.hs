@@ -309,3 +309,19 @@ losEmpleadosEnProyectos :: [Rol] -> [Proyecto] -> Int
 losEmpleadosEnProyectos []     ps = 0
 losEmpleadosEnProyectos (r:rs) ps = unoSi(trabajaEn r ps) + losEmpleadosEnProyectos rs ps
 
+--asignadosPorProyecto 
+
+asignadosPorProyecto :: Empresa -> [(Proyecto, Int)]
+asignadosPorProyecto (ConsEmpresa []) = []
+asignadosPorProyecto (ConsEmpresa rs) = empleadosAsignadosPorProyecto rs (sinRepetidos(proyectosDeRoles rs)) 
+
+empleadosAsignadosPorProyecto :: [Rol] -> [Proyecto] -> [(Proyecto,Int)]
+empleadosAsignadosPorProyecto rs (p:ps) = (p,cantEmpleadosEnProyecto p rs) : empleadosAsignadosPorProyecto rs ps
+empleadosAsignadosPorProyecto _  _      = []
+
+cantEmpleadosEnProyecto :: Proyecto -> [Rol] -> Int
+cantEmpleadosEnProyecto p []     = 0
+cantEmpleadosEnProyecto p (r:rs) = unoSi(trabajaEnElProyecto p r) + cantEmpleadosEnProyecto p rs
+
+trabajaEnElProyecto :: Proyecto -> Rol -> Bool
+trabajaEnElProyecto p r = p == proyecto r
