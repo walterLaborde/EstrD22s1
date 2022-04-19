@@ -282,5 +282,22 @@ agregarSiHaceFalta x ys = if(pertenece x ys)
                         then sinRepetidos ys
                         else x : sinRepetidos ys 
 
+-- losDevSenior
+
+losDevSenior :: Empresa -> [Proyecto] -> Int
+losDevSenior (ConsEmpresa rs) ps = losDevsSeniorEnProyectos rs ps
+
+losDevsSeniorEnProyectos :: [Rol] -> [Proyecto] -> Int
+losDevsSeniorEnProyectos []     ps = 0
+losDevsSeniorEnProyectos (r:rs) ps = unoSi (esDevSenior r && trabajaEn r ps) +
+                                        losDevsSeniorEnProyectos rs ps    
+
+esDevSenior :: Rol -> Bool
+esDevSenior (Developer  Senior _) = True
+esDevSenior (Developer  _      _) = False
+esDevSenior (Management _      _) = False
+
+trabajaEn :: Rol -> [Proyecto] -> Bool
+trabajaEn r ps = pertenece (proyecto r) ps
 
 
