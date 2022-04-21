@@ -328,7 +328,7 @@ losEmpleadosEnProyectos (r:rs) ps = unoSi(trabajaEn r ps) + losEmpleadosEnProyec
 --asignadosPorProyecto 
 
 asignadosPorProyecto :: Empresa -> [(Proyecto, Int)]
-asignadosPorProyecto (ConsEmpresa []) = []
+-- asignadosPorProyecto (ConsEmpresa []) = []     IGUAL QUE EL ANTERIOR, NO ES NECESARIO
 asignadosPorProyecto (ConsEmpresa rs) = empleadosAsignadosPorProyecto rs (sinRepetidos(proyectosDeRoles rs)) 
 
 empleadosAsignadosPorProyecto :: [Rol] -> [Proyecto] -> [(Proyecto,Int)]
