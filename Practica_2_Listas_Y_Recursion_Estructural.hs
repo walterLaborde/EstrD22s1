@@ -318,7 +318,7 @@ trabajaEn r ps = pertenece (proyecto r) ps
 -- cantQueTrabajanEn
 
 cantQueTrabajanEn :: [Proyecto] -> Empresa -> Int
-cantQueTrabajanEn [] (ConsEmpresa rs) = 0
+-- cantQueTrabajanEn [] (ConsEmpresa rs) = 0      NO ES NECESARIO, SE ENCARGA LA SUBTAREA
 cantQueTrabajanEn ps (ConsEmpresa rs) = losEmpleadosEnProyectos rs ps
 
 losEmpleadosEnProyectos :: [Rol] -> [Proyecto] -> Int
