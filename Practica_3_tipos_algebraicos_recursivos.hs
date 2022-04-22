@@ -121,3 +121,11 @@ tesorosEn os = apariciones Tesoro os
 
 -- ==================
 
+-- 2. Tipos arbóreos
+-- 2.1. Árboles binarios
+
+-- sumarT
+sumarT :: Tree Int -> Int
+
+sumarT EmptyT          = 0
+sumarT (NodeT x t1 t2) = x + sumarT t1 + sumarT t2
