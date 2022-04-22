@@ -52,3 +52,9 @@ sacar colour CeldaVacia       = CeldaVacia
 sacar colour (Bolita col cel) = if coloresIguales colour col 
                                     then cel
                                     else Bolita col (sacar colour cel)
+
+-- ponerN
+
+ponerN :: Int -> Color -> Celda -> Celda
+ponerN 0 col cel = cel
+ponerN n col cel = poner col (ponerN (n-1) col cel)
