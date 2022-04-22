@@ -96,7 +96,7 @@ hayTesoroEn n c = tantosPasosAlTesoro n c
 tantosPasosAlTesoro :: Int -> Camino -> Bool
 tantosPasosAlTesoro n c = n == (pasosHastaTesoro c)
 
--- alMenosNTesoros DA SIEMPRE TRUE
+-- alMenosNTesoros CORREGIDO
 
 alMenosNTesoros :: Int -> Camino -> Bool
 alMenosNTesoros 0 c               = True
@@ -116,3 +116,8 @@ tesorosEnCaminoActual (Nada      c) = tesorosEnCaminoActual c
 
 tesorosEn :: [Objeto] -> Int
 tesorosEn os = apariciones Tesoro os
+
+-- cantTesorosEntre :: Int -> Int -> Camino -> Int PENDIENTE !!
+
+-- =================
+
