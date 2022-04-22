@@ -134,3 +134,8 @@ sumarT (NodeT x t1 t2) = x + sumarT t1 + sumarT t2
 sizeT :: Tree a -> Int
 sizeT EmptyT          = 0
 sizeT (NodeT x t1 t2) = 1 + sizeT t1 + sizeT t2
+
+-- mapDobleT
+mapDobleT :: Tree Int -> Tree Int
+mapDobleT EmptyT          = EmptyT
+mapDobleT (NodeT x t1 t2) = NodeT (2*x) (mapDobleT t1) (mapDobleT t2)
