@@ -200,3 +200,14 @@ laMasLargaEntre :: Tree a -> Tree a -> [a]
 laMasLargaEntre t1 t2 = if (sizeT t1 > sizeT t2)
                             then leaves t1
                             else leaves t2
+
+
+--todosLosCaminos
+todosLosCaminos :: Tree a -> [[a]]
+todosLosCaminos EmptyT          = []
+todosLosCaminos (NodeT x t1 t2) = [x] : consACada x (todosLosCaminos t1)  
+                                        ++ consACada x (todosLosCaminos t2)
+
+consACada :: a -> [[a]] -> [[a]]
+consACada z []       = []
+consACada z (xs:xss) = (z:xs) : consACada z xss
