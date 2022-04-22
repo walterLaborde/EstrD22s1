@@ -169,3 +169,8 @@ masProfundoEntre n1 n2 = if n1>n2
 mirrorT :: Tree a -> Tree a
 mirrorT EmptyT          = EmptyT
 mirrorT (NodeT x t1 t2) = (NodeT x (mirrorT t2) (mirrorT t1))
+
+-- toList
+toList :: Tree a -> [a]
+toList EmptyT          = []
+toList (NodeT x t1 t2) = toList t1 ++ [x] ++ toList t2
