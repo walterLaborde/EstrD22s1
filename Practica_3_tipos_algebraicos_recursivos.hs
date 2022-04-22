@@ -164,3 +164,8 @@ masProfundoEntre :: Int -> Int -> Int
 masProfundoEntre n1 n2 = if n1>n2 
                             then n1
                             else n2
+
+--mirrorT
+mirrorT :: Tree a -> Tree a
+mirrorT EmptyT          = EmptyT
+mirrorT (NodeT x t1 t2) = (NodeT x (mirrorT t2) (mirrorT t1))
