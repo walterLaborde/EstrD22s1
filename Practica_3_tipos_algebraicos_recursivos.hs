@@ -36,3 +36,10 @@ coloresIguales c1    c2    = False
 unoSi :: Bool -> Int
 unoSi True  = 1
 unoSi False = 0
+
+-- poner 
+-- data Celda = Bolita Color Celda | CeldaVacia
+
+poner :: Color -> Celda -> Celda
+poner colour CeldaVacia       = Bolita colour CeldaVacia
+poner colour (Bolita col cel) = Bolita colour (Bolita col cel)
