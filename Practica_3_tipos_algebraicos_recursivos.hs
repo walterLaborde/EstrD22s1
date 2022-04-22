@@ -154,3 +154,13 @@ aparicionesT z (NodeT x t1 t2) = unoSi(z==x) + aparicionesT z t1 + aparicionesT 
 leaves :: Tree a -> [a]
 leaves EmptyT          = []
 leaves (NodeT x t1 t2) = x : leaves t1 ++ leaves t2
+
+-- heightT
+heightT :: Tree a -> Int
+heightT EmptyT          = 0
+heightT (NodeT x t1 t2) = 1 + masProfundoEntre (heightT t1) (heightT t2)
+
+masProfundoEntre :: Int -> Int -> Int 
+masProfundoEntre n1 n2 = if n1>n2 
+                            then n1
+                            else n2
