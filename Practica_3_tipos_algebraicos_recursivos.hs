@@ -58,3 +58,24 @@ sacar colour (Bolita col cel) = if coloresIguales colour col
 ponerN :: Int -> Color -> Celda -> Celda
 ponerN 0 col cel = cel
 ponerN n col cel = poner col (ponerN (n-1) col cel)
+
+-- 1.2. Camino hacia el tesoro
+
+data Objeto = Cacharro | Tesoro
+    deriving Eq
+data Camino = Fin | Cofre [Objeto] Camino | Nada Camino
+
+-- hayTesoro
+
+hayTesoro :: Camino -> Bool
+hayTesoro Fin           = False
+hayTesoro (Cofre obs c) = hayTesoroEntre obs || hayTesoro c
+hayTesoro (Nada c)      = hayTesoro c
+
+hayTesoroEntre :: [Objeto] -> Bool
+hayTesoroEntre []     = False
+hayTesoroEntre (o:os) = esTesoro o || hayTesoroEntre os 
+ 
+esTesoro :: Objeto -> Bool
+esTesoro Tesoro = True
+esTesoro _      = False
