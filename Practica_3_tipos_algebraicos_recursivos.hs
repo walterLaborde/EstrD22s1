@@ -190,3 +190,13 @@ juntarNiveles :: [[a]] -> [[a]] -> [[a]]
 juntarNiveles []       yss      = yss
 juntarNiveles xss      []       = xss
 juntarNiveles (xs:xss) (ys:yss) = (xs ++ ys) : juntarNiveles xss yss
+
+-- ramaMasLarga
+ramaMasLarga :: Tree a -> [a]
+ramaMasLarga EmptyT = []
+ramaMasLarga (NodeT x t1 t2) = laMasLargaEntre t1 t2
+
+laMasLargaEntre :: Tree a -> Tree a -> [a]
+laMasLargaEntre t1 t2 = if (sizeT t1 > sizeT t2)
+                            then leaves t1
+                            else leaves t2
