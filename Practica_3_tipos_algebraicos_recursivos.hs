@@ -174,3 +174,9 @@ mirrorT (NodeT x t1 t2) = (NodeT x (mirrorT t2) (mirrorT t1))
 toList :: Tree a -> [a]
 toList EmptyT          = []
 toList (NodeT x t1 t2) = toList t1 ++ [x] ++ toList t2
+
+-- levelN
+levelN :: Int -> Tree a -> [a]
+levelN _ EmptyT          = []
+levelN 0 (NodeT x _  _ ) = [x]
+levelN n (NodeT _ t1 t2) = levelN (n-1) t1 ++ levelN (n-1) t2
