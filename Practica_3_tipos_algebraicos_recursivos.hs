@@ -88,3 +88,10 @@ pasosHastaTesoro :: Camino -> Int
 pasosHastaTesoro Fin           = 0
 pasosHastaTesoro (Cofre obs c) = unoSi(not(hayTesoroEntre obs)) + pasosHastaTesoro c
 pasosHastaTesoro (Nada      c) = 1 + pasosHastaTesoro c
+
+-- hayTesoroEn 
+hayTesoroEn :: Int -> Camino -> Bool
+hayTesoroEn n c = tantosPasosAlTesoro n c
+
+tantosPasosAlTesoro :: Int -> Camino -> Bool
+tantosPasosAlTesoro n c = n == (pasosHastaTesoro c)
