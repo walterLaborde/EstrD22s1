@@ -99,15 +99,7 @@ tantosPasosAlTesoro n c = n == (pasosHastaTesoro c)
 -- alMenosNTesoros CORREGIDO
 
 alMenosNTesoros :: Int -> Camino -> Bool
-alMenosNTesoros 0 c               = True
-alMenosNTesoros n c               = if ((tesorosEnCaminoActual c)-n) >= 0 
-                                        then True
-                                        else False
-
-darUnPaso :: Camino -> Camino
-darUnPaso Fin           = Fin
-darUnPaso (Cofre obs c) = c
-darUnPaso (Nada      c) = c
+alMenosNTesoros n c = (tesorosEnCaminoActual c)-n >= 0 
 
 tesorosEnCaminoActual :: Camino -> Int
 tesorosEnCaminoActual Fin           = 0
