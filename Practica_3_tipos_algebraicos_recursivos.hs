@@ -43,3 +43,12 @@ unoSi False = 0
 poner :: Color -> Celda -> Celda
 poner colour CeldaVacia       = Bolita colour CeldaVacia
 poner colour (Bolita col cel) = Bolita colour (Bolita col cel)
+
+-- Sacar
+
+sacar :: Color -> Celda -> Celda
+
+sacar colour CeldaVacia       = CeldaVacia
+sacar colour (Bolita col cel) = if coloresIguales colour col 
+                                    then cel
+                                    else Bolita col (sacar colour cel)
