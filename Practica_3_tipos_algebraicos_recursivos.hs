@@ -180,3 +180,13 @@ levelN :: Int -> Tree a -> [a]
 levelN _ EmptyT          = []
 levelN 0 (NodeT x _  _ ) = [x]
 levelN n (NodeT _ t1 t2) = levelN (n-1) t1 ++ levelN (n-1) t2
+
+-- listPerLevel
+listPerLevel :: Tree a -> [[a]]
+listPerLevel EmptyT          = []
+listPerLevel (NodeT x t1 t2) = (x:[]) : juntarNiveles (listPerLevel t1) (listPerLevel t2)  
+
+juntarNiveles :: [[a]] -> [[a]] -> [[a]]
+juntarNiveles []       yss      = yss
+juntarNiveles xss      []       = xss
+juntarNiveles (xs:xss) (ys:yss) = (xs ++ ys) : juntarNiveles xss yss
