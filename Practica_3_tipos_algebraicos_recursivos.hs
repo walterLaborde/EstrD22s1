@@ -144,3 +144,8 @@ mapDobleT (NodeT x t1 t2) = NodeT (2*x) (mapDobleT t1) (mapDobleT t2)
 perteneceT :: Eq a => a -> Tree a -> Bool
 perteneceT z EmptyT          = False
 perteneceT z (NodeT x t1 t2) = z==x || perteneceT z t1 || perteneceT z t2
+
+-- aparicionesT
+aparicionesT :: Eq a => a -> Tree a -> Int
+aparicionesT z EmptyT          = 0
+aparicionesT z (NodeT x t1 t2) = unoSi(z==x) + aparicionesT z t1 + aparicionesT z t2
