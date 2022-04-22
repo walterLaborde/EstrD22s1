@@ -79,3 +79,12 @@ hayTesoroEntre (o:os) = esTesoro o || hayTesoroEntre os
 esTesoro :: Objeto -> Bool
 esTesoro Tesoro = True
 esTesoro _      = False
+
+--pasosHastaTesoro
+
+pasosHastaTesoro :: Camino -> Int
+-- Precond: hay al menos un tesoro
+
+pasosHastaTesoro Fin           = 0
+pasosHastaTesoro (Cofre obs c) = unoSi(not(hayTesoroEntre obs)) + pasosHastaTesoro c
+pasosHastaTesoro (Nada      c) = 1 + pasosHastaTesoro c
