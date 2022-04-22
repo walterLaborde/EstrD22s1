@@ -139,3 +139,8 @@ sizeT (NodeT x t1 t2) = 1 + sizeT t1 + sizeT t2
 mapDobleT :: Tree Int -> Tree Int
 mapDobleT EmptyT          = EmptyT
 mapDobleT (NodeT x t1 t2) = NodeT (2*x) (mapDobleT t1) (mapDobleT t2)
+
+-- perteneceT
+perteneceT :: Eq a => a -> Tree a -> Bool
+perteneceT z EmptyT          = False
+perteneceT z (NodeT x t1 t2) = z==x || perteneceT z t1 || perteneceT z t2
