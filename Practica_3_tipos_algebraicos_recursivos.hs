@@ -149,3 +149,8 @@ perteneceT z (NodeT x t1 t2) = z==x || perteneceT z t1 || perteneceT z t2
 aparicionesT :: Eq a => a -> Tree a -> Int
 aparicionesT z EmptyT          = 0
 aparicionesT z (NodeT x t1 t2) = unoSi(z==x) + aparicionesT z t1 + aparicionesT z t2
+
+-- leaves
+leaves :: Tree a -> [a]
+leaves EmptyT          = []
+leaves (NodeT x t1 t2) = x : leaves t1 ++ leaves t2
