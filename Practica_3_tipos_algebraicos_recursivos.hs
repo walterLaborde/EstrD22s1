@@ -42,7 +42,7 @@ unoSi False = 0
 
 poner :: Color -> Celda -> Celda
 poner colour CeldaVacia       = Bolita colour CeldaVacia
-poner colour (Bolita col cel) = Bolita colour (Bolita col cel)
+poner colour (Bolita col cel) = Bolita col (poner colour cel)
 
 -- Sacar
 
