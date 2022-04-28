@@ -41,8 +41,7 @@ unoSi False = 0
 -- data Celda = Bolita Color Celda | CeldaVacia
 
 poner :: Color -> Celda -> Celda
-poner colour CeldaVacia       = Bolita colour CeldaVacia
-poner colour (Bolita col cel) = Bolita col (poner colour cel)
+poner col c = Bolita col c
 
 -- Sacar
 
