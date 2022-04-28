@@ -328,16 +328,14 @@ losEmpleadosEnProyectos (r:rs) ps = unoSi(trabajaEn r ps) + losEmpleadosEnProyec
 --asignadosPorProyecto 
 
 asignadosPorProyecto :: Empresa -> [(Proyecto, Int)]
--- asignadosPorProyecto (ConsEmpresa []) = []     IGUAL QUE EL ANTERIOR, NO ES NECESARIO
-asignadosPorProyecto (ConsEmpresa rs) = empleadosAsignadosPorProyecto rs (sinRepetidos(proyectosDeRoles rs)) 
+asignadosPorProyecto (ConsEmpresa rs) = procesarProyectos rs 
 
-empleadosAsignadosPorProyecto :: [Rol] -> [Proyecto] -> [(Proyecto,Int)]
-empleadosAsignadosPorProyecto rs (p:ps) = (p,cantEmpleadosEnProyecto p rs) : empleadosAsignadosPorProyecto rs ps
-empleadosAsignadosPorProyecto _  _      = []
+procesarProyectos :: [Rol] -> [(Proyecto, Int)]
+procesarProyectos []     = []
+procesarProyectos (r:rs) =   incluirElProyecto (proyecto r) (procesarProyectos rs)
 
-cantEmpleadosEnProyecto :: Proyecto -> [Rol] -> Int
-cantEmpleadosEnProyecto p []     = 0
-cantEmpleadosEnProyecto p (r:rs) = unoSi(trabajaEnElProyecto p r) + cantEmpleadosEnProyecto p rs
-
-trabajaEnElProyecto :: Proyecto -> Rol -> Bool
-trabajaEnElProyecto p r = p == proyecto r
+incluirElProyecto :: Proyecto -> [(Proyecto, Int)] -> [(Proyecto, Int)]
+incluirElProyecto p []           = [(p,1)]
+incluirElProyecto p ((p1,n):ps1) = if p == p1 
+                                     then (p1,n+1) : ps1
+                                     else (p1,n) : incluirElProyecto p ps1
