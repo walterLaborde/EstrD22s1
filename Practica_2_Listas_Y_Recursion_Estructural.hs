@@ -229,26 +229,28 @@ tipo (ConsPokemon t e) = t
 -- losQueLeGanan
 
 losQueLeGanan :: TipoDePokemon -> Entrenador -> Entrenador -> Int
-losQueLeGanan t e1 e2 = losDeTipoQueGananATodos t e1 e2
+losQueLeGanan t (ConsEntrenador _ ps1) (ConsEntrenador _ ps2) = cantPokeQueLeGanaATodos t ps1 ps2
 
-losDeTipoQueGananATodos :: TipoDePokemon -> Entrenador -> Entrenador -> Int
-losDeTipoQueGananATodos t (ConsEntrenador _ ps1) (ConsEntrenador _ ps2) = if(tipoLeGanaATodos t ps2) 
-                                                                            then pokemonesDeTipoEn t ps1
-                                                                            else 0
+cantPokeQueLeGanaATodos :: TipoDePokemon -> [Pokemon] -> [Pokemon] -> Int
+cantPokeQueLeGanaATodos t []       ps2 = 0
+cantPokeQueLeGanaATodos t (p1:ps1) ps2 = unoSi(leGanaATodos t p1 ps2) + cantPokeQueLeGanaATodos t ps1 ps2
 
-pokemonesDeTipoEn :: TipoDePokemon -> [Pokemon] -> Int
-pokemonesDeTipoEn t []     = 0
-pokemonesDeTipoEn t (p:ps) = unoSi((tipo p) == t) + pokemonesDeTipoEn t ps
+leGanaATodos :: TipoDePokemon -> Pokemon -> [Pokemon] -> Bool
+leGanaATodos t p []       = True
+leGanaATodos t p (p1:ps1) = ((t == tipo p) && superaA p p1) && leGanaATodos t p ps1
 
-tipoLeGanaATodos :: TipoDePokemon -> [Pokemon] -> Bool
-tipoLeGanaATodos t []     = True
-tipoLeGanaATodos t (p:ps) = esSuperiorElTipo t (tipo p) && tipoLeGanaATodos t ps
+-- funciones accesorias
 
-esDelMisoTipo :: TipoDePokemon -> TipoDePokemon -> Bool
-esDelMisoTipo Agua Agua     = True
-esDelMisoTipo Fuego Fuego   = True
-esDelMisoTipo Planta Planta = True
-esDelMisoTipo _      _      = False
+superaA :: Pokemon -> Pokemon -> Bool
+superaA (ConsPokemon t1 _) (ConsPokemon t2 _) = esSuperiorElTipo t1 t2
+
+esSuperiorElTipo :: TipoDePokemon -> TipoDePokemon -> Bool
+
+esSuperiorElTipo Agua Fuego   = True
+esSuperiorElTipo Fuego Planta = True
+esSuperiorElTipo Planta Agua  = True
+esSuperiorElTipo _      _     = False
+
 
 -- esMaestroPokemon
 
