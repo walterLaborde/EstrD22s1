@@ -229,15 +229,21 @@ tipo (ConsPokemon t e) = t
 -- losQueLeGanan
 
 losQueLeGanan :: TipoDePokemon -> Entrenador -> Entrenador -> Int
-losQueLeGanan t (ConsEntrenador _ ps1) (ConsEntrenador _ ps2) = cantPokeQueLeGanaATodos t ps1 ps2
+losQueLeGanan t (ConsEntrenador _ ps1) (ConsEntrenador _ ps2) = cantPokeQueLeGanaATodos (pokesDeTipo t ps1) ps2
 
-cantPokeQueLeGanaATodos :: TipoDePokemon -> [Pokemon] -> [Pokemon] -> Int
-cantPokeQueLeGanaATodos t []       ps2 = 0
-cantPokeQueLeGanaATodos t (p1:ps1) ps2 = unoSi(leGanaATodos t p1 ps2) + cantPokeQueLeGanaATodos t ps1 ps2
+cantPokeQueLeGanaATodos :: [Pokemon] -> [Pokemon] -> Int
+cantPokeQueLeGanaATodos []       ps2 = 0
+cantPokeQueLeGanaATodos (p1:ps1) ps2 = unoSi(leGanaATodos p1 ps2) + cantPokeQueLeGanaATodos ps1 ps2
 
-leGanaATodos :: TipoDePokemon -> Pokemon -> [Pokemon] -> Bool
-leGanaATodos t p []       = True
-leGanaATodos t p (p1:ps1) = ((t == tipo p) && superaA p p1) && leGanaATodos t p ps1
+leGanaATodos :: Pokemon -> [Pokemon] -> Bool
+leGanaATodos p []       = True
+leGanaATodos p (p1:ps1) = superaA p p1 && leGanaATodos p ps1
+
+pokesDeTipo :: TipoDePokemon -> [Pokemon] -> [Pokemon]
+pokesDeTipo t []     = []
+pokesDeTipo t (p:ps) = if t == (tipo p)
+                          then p : pokesDeTipo t ps
+                          else pokesDeTipo t ps
 
 -- funciones accesorias
 
