@@ -271,7 +271,7 @@ esMaestroPokemon (ConsEntrenador n (p:ps)) =  pertenece Agua   (tiposDePokemones
 
 data Seniority = Junior | SemiSenior | Senior
 data Proyecto = ConsProyecto String
-  deriving Eq
+  -- deriving Eq
 data Rol = Developer Seniority Proyecto | Management Seniority Proyecto
 data Empresa = ConsEmpresa [Rol]
 
