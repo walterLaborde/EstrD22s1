@@ -24,3 +24,7 @@ pizza5 = Capa Queso
                   (Capa Queso 
                        (Capa Queso Prepizza)))
 
+-- cantidadDeCapas
+cantidadDeCapas :: Pizza -> Int
+cantidadDeCapas Prepizza     = 0
+cantidadDeCapas (Capa ing p) = 1 + cantidadDeCapas p
