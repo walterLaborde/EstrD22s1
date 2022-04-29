@@ -220,3 +220,27 @@ eval (Valor n)    = n
 eval (Sum  ex1 ex2) = eval ex1 + eval ex2
 eval (Prod ex1 ex2) = eval ex1 * eval ex2
 eval (Neg  ex1    ) = (- eval ex1)
+
+-- simplificar
+
+simplificar :: ExpA -> ExpA
+simplificar (Sum   ex1 ex2) = simplificarSuma (simplificar ex1) (simplificar ex2)
+simplificar (Prod  ex1 ex2) = simplificarProd (simplificar ex1) (simplificar ex2)
+simplificar (Neg   ex1)     = agregarNegSiCorresponde(simplificar ex1)
+simplificar (Valor ex)    = Valor ex
+
+agregarNegSiCorresponde :: ExpA -> ExpA
+agregarNegSiCorresponde (Neg ex) = ex 
+agregarNegSiCorresponde      ex  = Neg ex 
+
+simplificarSuma :: ExpA -> ExpA -> ExpA
+simplificarSuma  (Valor 0) z   = z
+simplificarSuma  y (Valor 0)   = y 
+simplificarSuma  y         z   = Sum y z
+
+simplificarProd :: ExpA -> ExpA -> ExpA
+simplificarProd  (Valor 0) z   = Valor 0
+simplificarProd  y (Valor 0)   = Valor 0
+simplificarProd  (Valor 1) z   = z
+simplificarProd  y (Valor 1)   = y 
+simplificarProd  y         z   = Prod y z
