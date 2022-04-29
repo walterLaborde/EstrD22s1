@@ -58,3 +58,12 @@ sonAceitunas i = esMismoIngrediente i (Aceitunas (cantidadDeAceitunas i))
 
 cantidadDeAceitunas :: Ingrediente -> Int
 cantidadDeAceitunas (Aceitunas n) = n  
+
+
+--cantCapasPorPizza
+cantCapasPorPizza :: [Pizza] -> [(Int, Pizza)]
+cantCapasPorPizza []     = []
+cantCapasPorPizza (p:ps) =  cantidadDeCapasDe p : cantCapasPorPizza ps
+
+cantidadDeCapasDe :: Pizza -> (Int,Pizza)
+cantidadDeCapasDe p = (cantidadDeCapas p, p)
