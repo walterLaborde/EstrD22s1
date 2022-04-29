@@ -33,3 +33,14 @@ cantidadDeCapas (Capa ing p) = 1 + cantidadDeCapas p
 armarPizza :: [Ingrediente] -> Pizza
 armarPizza []         = Prepizza
 armarPizza (ing:ings) = Capa ing (armarPizza ings)
+
+
+-- sacarJamon
+sacarJamon :: Pizza -> Pizza
+sacarJamon Prepizza     = Prepizza
+sacarJamon (Capa ing p) = if esJamon ing 
+                            then (sacarJamon p)   
+                            else (Capa ing (sacarJamon p)) 
+
+esJamon ::  Ingrediente -> Bool
+esJamon i  = esMismoIngrediente i Jamon
