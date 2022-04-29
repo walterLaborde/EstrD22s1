@@ -99,18 +99,16 @@ hayTesoroEn n c = tantosPasosAlTesoro n c
 tantosPasosAlTesoro :: Int -> Camino -> Bool
 tantosPasosAlTesoro n c = n == (pasosHastaTesoro c)
 
--- alMenosNTesoros CORREGIDO
+-- alMenosNTesoros
 
 alMenosNTesoros :: Int -> Camino -> Bool
-alMenosNTesoros n c = (tesorosEnCaminoActual c)-n >= 0 
+alMenosNTesoros n Fin           = False
+alMenosNTesoros n (Cofre obs c) = n <= cantDeTesorosEn obs || alMenosNTesoros (n-1) c
+alMenosNTesoros n (Nada      c) = alMenosNTesoros (n-1) c
 
-tesorosEnCaminoActual :: Camino -> Int
-tesorosEnCaminoActual Fin           = 0
-tesorosEnCaminoActual (Cofre obs c) = tesorosEn obs + tesorosEnCaminoActual c
-tesorosEnCaminoActual (Nada      c) = tesorosEnCaminoActual c 
-
-tesorosEn :: [Objeto] -> Int
-tesorosEn os = apariciones Tesoro os
+cantDeTesorosEn :: [Objeto] -> Int
+cantDeTesorosEn []     = 0
+cantDeTesorosEn (o:os) = unoSi(esTesoro o) + cantDeTesorosEn os
 
 -- cantTesorosEntre :: Int -> Int -> Camino -> Int PENDIENTE !!
 
