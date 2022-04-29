@@ -206,3 +206,17 @@ todosLosCaminos (NodeT x t1 t2) = [x] : consACada x (todosLosCaminos t1)
 consACada :: a -> [[a]] -> [[a]]
 consACada z []       = []
 consACada z (xs:xss) = (z:xs) : consACada z xss
+
+-- 2.2. Expresiones Aritméticas
+
+data ExpA = Valor Int
+          | Sum ExpA ExpA
+          | Prod ExpA ExpA
+          | Neg ExpA
+
+-- eval
+eval :: ExpA -> Int
+eval (Valor n)    = n
+eval (Sum  ex1 ex2) = eval ex1 + eval ex2
+eval (Prod ex1 ex2) = eval ex1 * eval ex2
+eval (Neg  ex1    ) = (- eval ex1)
