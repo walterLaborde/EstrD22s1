@@ -46,6 +46,15 @@ esJamon ::  Ingrediente -> Bool
 esJamon i  = esMismoIngrediente i Jamon
 
 
+--tieneSoloSalsaYQueso  -- /////// NO ME DA EL RESULTADO ESPERADO //////
+tieneSoloSalsaYQueso :: Pizza -> Bool
+tieneSoloSalsaYQueso Prepizza     = False
+tieneSoloSalsaYQueso (Capa ing p) = (esSalsaOQueso ing) && tieneSoloSalsaYQueso p
+
+esSalsaOQueso :: Ingrediente -> Bool
+esSalsaOQueso i = esMismoIngrediente i Salsa || esMismoIngrediente i Queso
+
+
 -- duplicarAceitunas
 duplicarAceitunas :: Pizza -> Pizza
 duplicarAceitunas Prepizza     = Prepizza
@@ -67,3 +76,5 @@ cantCapasPorPizza (p:ps) =  cantidadDeCapasDe p : cantCapasPorPizza ps
 
 cantidadDeCapasDe :: Pizza -> (Int,Pizza)
 cantidadDeCapasDe p = (cantidadDeCapas p, p)
+
+
