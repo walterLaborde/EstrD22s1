@@ -83,10 +83,14 @@ esTesoro _      = False
 
 pasosHastaTesoro :: Camino -> Int
 -- Precond: hay al menos un tesoro
-
-pasosHastaTesoro Fin           = 0
-pasosHastaTesoro (Cofre obs c) = unoSi(not(hayTesoroEntre obs)) + pasosHastaTesoro c
+pasosHastaTesoro Fin           = error"hay al menos un tesoro"
+pasosHastaTesoro (Cofre obs c) = contarSiNoHayTesoro obs (pasosHastaTesoro c)
 pasosHastaTesoro (Nada      c) = 1 + pasosHastaTesoro c
+ 
+contarSiNoHayTesoro :: [Objeto] -> Int -> Int 
+contarSiNoHayTesoro obs n = if hayTesoroEntre obs
+                              then 0
+                              else 1 + n
 
 -- hayTesoroEn 
 hayTesoroEn :: Int -> Camino -> Bool
