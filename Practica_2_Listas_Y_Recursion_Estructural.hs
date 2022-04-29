@@ -275,6 +275,16 @@ data Proyecto = ConsProyecto String
 data Rol = Developer Seniority Proyecto | Management Seniority Proyecto
 data Empresa = ConsEmpresa [Rol]
 
+-- funciones de comparacion
+esMismoProyecto :: Proyecto -> Proyecto -> Bool
+esMismoProyecto (ConsProyecto n1) (ConsProyecto n2) = n1 == n2
+
+esMismoSeniority :: Seniority -> Seniority -> Bool
+esMismoSeniority Junior     Junior     = True
+esMismoSeniority SemiSenior SemiSenior = True
+esMismoSeniority Senior     Senior     = True
+esMismoSeniority s1         s2         = False
+
 -- casos de uso
 
 dev1 = Developer  Junior     (ConsProyecto "proy1")
@@ -287,24 +297,28 @@ ivm = ConsEmpresa [dev1,dev2,dev3,mgm1]
 -- proyectos 
 
 proyectos :: Empresa -> [Proyecto]
-proyectos (ConsEmpresa rs) = sinRepetidos(proyectosDeRoles rs)
+proyectos (ConsEmpresa rs) = sinProyectosRepetidos(proyectosDeRoles rs)
 
 proyectosDeRoles :: [Rol] -> [Proyecto]
 proyectosDeRoles []     = []
 proyectosDeRoles (r:rs) = (proyecto r) : proyectosDeRoles rs
 
+sinProyectosRepetidos :: [Proyecto] -> [Proyecto]
+sinProyectosRepetidos []     = []
+sinProyectosRepetidos (x:xs) = agregarSiHaceFaltaProyecto x (sinProyectosRepetidos xs) 
+
+agregarSiHaceFaltaProyecto :: Proyecto -> [Proyecto] -> [Proyecto]
+agregarSiHaceFaltaProyecto p ps1 = if(estaIncluidoProyecto p ps1)
+                        then ps1
+                        else p : ps1 
+
+estaIncluidoProyecto :: Proyecto -> [Proyecto] -> Bool
+estaIncluidoProyecto p []     = False
+estaIncluidoProyecto p (p1:ps1) = esMismoProyecto p p1 || estaIncluidoProyecto p ps1
+
 proyecto :: Rol -> Proyecto
 proyecto (Developer _ p)   = p
 proyecto (Management _  p) = p
-
-sinRepetidos :: Eq a => [a] -> [a]
-sinRepetidos []     = []
-sinRepetidos (x:xs) = agregarSiHaceFalta x (sinRepetidos xs) 
-
-agregarSiHaceFalta :: Eq a => a -> [a] -> [a]
-agregarSiHaceFalta x ys = if(pertenece x ys)
-                            then ys
-                            else x : ys
 
 -- losDevSenior
 
@@ -329,13 +343,12 @@ esSenior (Management s _) = esMismoSeniority s Senior
 
 
 trabajaEn :: Rol -> [Proyecto] -> Bool
-trabajaEn r ps = pertenece (proyecto r) ps
+trabajaEn r ps = estaIncluidoProyecto (proyecto r) ps
 
 
 -- cantQueTrabajanEn
 
 cantQueTrabajanEn :: [Proyecto] -> Empresa -> Int
--- cantQueTrabajanEn [] (ConsEmpresa rs) = 0      NO ES NECESARIO, SE ENCARGA LA SUBTAREA
 cantQueTrabajanEn ps (ConsEmpresa rs) = losEmpleadosEnProyectos rs ps
 
 losEmpleadosEnProyectos :: [Rol] -> [Proyecto] -> Int
@@ -353,6 +366,6 @@ procesarProyectos (r:rs) =   incluirElProyecto (proyecto r) (procesarProyectos r
 
 incluirElProyecto :: Proyecto -> [(Proyecto, Int)] -> [(Proyecto, Int)]
 incluirElProyecto p []           = [(p,1)]
-incluirElProyecto p ((p1,n):ps1) = if p == p1 
+incluirElProyecto p ((p1,n):ps1) = if esMismoProyecto p p1 
                                      then (p1,n+1) : ps1
                                      else (p1,n) : incluirElProyecto p ps1
