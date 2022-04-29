@@ -28,3 +28,8 @@ pizza5 = Capa Queso
 cantidadDeCapas :: Pizza -> Int
 cantidadDeCapas Prepizza     = 0
 cantidadDeCapas (Capa ing p) = 1 + cantidadDeCapas p
+
+--armarPizza
+armarPizza :: [Ingrediente] -> Pizza
+armarPizza []         = Prepizza
+armarPizza (ing:ings) = Capa ing (armarPizza ings)
