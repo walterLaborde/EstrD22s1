@@ -44,3 +44,17 @@ sacarJamon (Capa ing p) = if esJamon ing
 
 esJamon ::  Ingrediente -> Bool
 esJamon i  = esMismoIngrediente i Jamon
+
+
+-- duplicarAceitunas
+duplicarAceitunas :: Pizza -> Pizza
+duplicarAceitunas Prepizza     = Prepizza
+duplicarAceitunas (Capa ing p) = if sonAceitunas ing 
+                                   then (Capa ing (Capa ing (duplicarAceitunas p)))
+                                   else (Capa ing (duplicarAceitunas p))
+
+sonAceitunas :: Ingrediente -> Bool 
+sonAceitunas i = esMismoIngrediente i (Aceitunas (cantidadDeAceitunas i))
+
+cantidadDeAceitunas :: Ingrediente -> Int
+cantidadDeAceitunas (Aceitunas n) = n  
