@@ -303,8 +303,8 @@ sinRepetidos (x:xs) = agregarSiHaceFalta x (sinRepetidos xs)
 
 agregarSiHaceFalta :: Eq a => a -> [a] -> [a]
 agregarSiHaceFalta x ys = if(pertenece x ys)
-                        then sinRepetidos ys
-                        else x : sinRepetidos ys 
+                            then ys
+                            else x : ys
 
 -- losDevSenior
 
