@@ -77,4 +77,19 @@ cantCapasPorPizza (p:ps) =  cantidadDeCapasDe p : cantCapasPorPizza ps
 cantidadDeCapasDe :: Pizza -> (Int,Pizza)
 cantidadDeCapasDe p = (cantidadDeCapas p, p)
 
+--hayTesoro
+hayTesoro :: Mapa -> Bool
+hayTesoro (Fin (Cofre obs))                   = hayTesoroEntre obs
+hayTesoro (Bifurcacion (Cofre obs) m1 m2) = hayTesoroEntre obs || (hayTesoro m1 || hayTesoro m2)
 
+
+objetosDe :: Cofre -> [Objeto]
+objetosDe (Cofre obs) = obs
+
+hayTesoroEntre :: [Objeto] -> Bool
+hayTesoroEntre []     = False
+hayTesoroEntre (o:os) = esTesoro o || hayTesoroEntre os 
+ 
+esTesoro :: Objeto -> Bool
+esTesoro Tesoro = True
+esTesoro _      = False
