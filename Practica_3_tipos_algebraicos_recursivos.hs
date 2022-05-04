@@ -106,11 +106,11 @@ hayTesoroEnCaminoActual (Cofre obs c) = hayTesoroEntre obs
 hayTesoroEnCaminoActual _             = False
 
 -- alMenosNTesoros
-
+-- Precond : int no puede ser negativo
 alMenosNTesoros :: Int -> Camino -> Bool
 alMenosNTesoros n Fin           = False
-alMenosNTesoros n (Cofre obs c) = n <= cantDeTesorosEn obs || alMenosNTesoros (n-1) c
-alMenosNTesoros n (Nada      c) = alMenosNTesoros (n-1) c
+alMenosNTesoros n (Cofre obs c) = n <= cantDeTesorosEn obs || alMenosNTesoros (n-(cantDeTesorosEn obs)) c
+alMenosNTesoros n (Nada      c) = alMenosNTesoros n c
 
 cantDeTesorosEn :: [Objeto] -> Int
 cantDeTesorosEn []     = 0
