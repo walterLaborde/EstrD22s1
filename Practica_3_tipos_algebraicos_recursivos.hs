@@ -93,11 +93,17 @@ contarSiNoHayTesoro obs n = if hayTesoroEntre obs
                               else 1 + n
 
 -- hayTesoroEn 
+-- Precond: Int no puede ser negativo
 hayTesoroEn :: Int -> Camino -> Bool
-hayTesoroEn n c = tantosPasosAlTesoro n c
 
-tantosPasosAlTesoro :: Int -> Camino -> Bool
-tantosPasosAlTesoro n c = n == (pasosHastaTesoro c)
+hayTesoroEn 0 c             = hayTesoroEnCaminoActual c 
+hayTesoroEn n Fin           = False
+hayTesoroEn n (Cofre obs c) = hayTesoroEntre obs || hayTesoroEn (n-1) c
+hayTesoroEn n (Nada      c) = hayTesoroEn (n-1) c
+
+hayTesoroEnCaminoActual :: Camino -> Bool
+hayTesoroEnCaminoActual (Cofre obs c) = hayTesoroEntre obs
+hayTesoroEnCaminoActual _             = False
 
 -- alMenosNTesoros
 
