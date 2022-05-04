@@ -146,7 +146,16 @@ aparicionesT z (NodeT x t1 t2) = unoSi(z==x) + aparicionesT z t1 + aparicionesT 
 -- leaves
 leaves :: Tree a -> [a]
 leaves EmptyT          = []
-leaves (NodeT x t1 t2) = x : leaves t1 ++ leaves t2
+leaves (NodeT x t1 t2) = singularSi x (esArbolVacio t1 && esArbolVacio t2)  ++ leaves t1 ++ leaves t2
+
+esArbolVacio :: Tree a -> Bool
+esArbolVacio EmptyT = True
+esArbolVacio _      = False
+
+singularSi :: a -> Bool -> [a]
+singularSi x True = [x] 
+singularSi x _    = []
+
 
 -- heightT
 heightT :: Tree a -> Int
