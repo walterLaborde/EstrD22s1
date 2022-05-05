@@ -46,9 +46,9 @@ esJamon ::  Ingrediente -> Bool
 esJamon i  = esMismoIngrediente i Jamon
 
 
---tieneSoloSalsaYQueso  -- /////// NO ME DA EL RESULTADO ESPERADO //////
+--tieneSoloSalsaYQueso  
 tieneSoloSalsaYQueso :: Pizza -> Bool
-tieneSoloSalsaYQueso Prepizza     = False
+tieneSoloSalsaYQueso Prepizza     = True
 tieneSoloSalsaYQueso (Capa ing p) = (esSalsaOQueso ing) && tieneSoloSalsaYQueso p
 
 esSalsaOQueso :: Ingrediente -> Bool
