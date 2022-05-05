@@ -116,7 +116,19 @@ cantDeTesorosEn :: [Objeto] -> Int
 cantDeTesorosEn []     = 0
 cantDeTesorosEn (o:os) = unoSi(esTesoro o) + cantDeTesorosEn os
 
--- cantTesorosEntre :: Int -> Int -> Camino -> Int PENDIENTE !!
+-- (desafío) cantTesorosEntre :: Int -> Int -> Camino -> Int
+-- PRECOND : el primer int es menor o igual al segundo
+cantTesorosEntre :: Int -> Int -> Camino -> Int
+cantTesorosEntre x y c =  contarTesorosSiLlegueA x y 0 c 
+
+contarTesorosSiLlegueA :: Int -> Int -> Int -> Camino -> Int
+contarTesorosSiLlegueA x y z Fin           = 0
+contarTesorosSiLlegueA x y z (Cofre obs c) = sumarSi(z>=x && z<=y) obs (contarTesorosSiLlegueA x y (z+1) c)
+contarTesorosSiLlegueA x y z (Nada      c) = contarTesorosSiLlegueA x y (z+1) c
+
+sumarSi :: Bool -> [Objeto] -> Int -> Int
+sumarSi False _ y = y
+sumarSi True obs y  = cantDeTesorosEn obs + y
 
 -- ==================
 
