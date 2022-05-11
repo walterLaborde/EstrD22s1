@@ -111,3 +111,20 @@ esMismaDir :: Dir -> Dir -> Bool
 esMismaDir Izq Izq = True
 esMismaDir Der Der = True
 esMismaDir _   _   = False
+
+
+-- caminoAlTesoro
+caminoAlTesoro :: Mapa -> [Dir]
+caminoAlTesoro (Fin         c      ) = []
+caminoAlTesoro (Bifurcacion c m1 m2) = avanzarSiNoHayTesoro c m1 m2 ++ (caminoAlTesoro m1) ++ (caminoAlTesoro m2)
+
+avanzarSiNoHayTesoro :: Cofre -> Mapa -> Mapa -> [Dir]
+avanzarSiNoHayTesoro c m1 m2 = if hayTesoroEntre (objetosDe c)
+                                then []
+                                else hayTesoroHacia m1 m2
+
+
+hayTesoroHacia :: Mapa -> Mapa -> [Dir]
+hayTesoroHacia m1 m2 = if hayTesoro m1
+                         then [Izq]
+                         else [Der]
