@@ -128,3 +128,28 @@ hayTesoroHacia :: Mapa -> Mapa -> [Dir]
 hayTesoroHacia m1 m2 = if hayTesoro m1
                          then [Izq]
                          else [Der]
+
+
+-- caminoDeLaRamaMasLarga
+caminoDeLaRamaMasLarga :: Mapa -> [Dir]
+caminoDeLaRamaMasLarga (Fin         c      ) = []
+caminoDeLaRamaMasLarga (Bifurcacion c m1 m2) = 
+    laMasLargaEntre (Izq : caminoDeLaRamaMasLarga m1) (Der : caminoDeLaRamaMasLarga m2) 
+
+laMasLargaEntre :: [Dir] -> [Dir] -> [Dir]
+laMasLargaEntre xs ys = if longitud xs > longitud ys
+                            then xs
+                            else ys
+
+longitud :: [a] -> Int
+longitud []     = 0
+longitud (n:ns) = 1 + longitud ns
+
+hayCaminoHacia :: Dir -> Mapa -> [Dir]
+hayCaminoHacia d m = if not (esFin m) 
+                        then [d]
+                        else []
+
+esFin :: Mapa -> Bool
+esFin (Fin c) = True
+esFin _     = False
