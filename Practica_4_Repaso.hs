@@ -170,3 +170,14 @@ juntarNiveles []       yss      = yss
 juntarNiveles xss      []       = xss
 juntarNiveles (xs:xss) (ys:yss) = (xs ++ ys) : juntarNiveles xss yss
 
+-- todosLosCaminos
+todosLosCaminos :: Mapa -> [[Dir]]
+todosLosCaminos (Fin         c      ) = []
+todosLosCaminos (Bifurcacion c m1 m2) = 
+   [Izq] : consACada Izq (todosLosCaminos m1)  ++
+   [Der] : consACada Der (todosLosCaminos m2)
+
+
+consACada :: a -> [[a]] -> [[a]]
+consACada z []       = []
+consACada z (xs:xss) = (z:xs) : consACada z xss
