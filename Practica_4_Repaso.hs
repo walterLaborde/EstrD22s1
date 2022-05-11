@@ -280,4 +280,23 @@ agregarTripulante t id (S i cs ts) = if id == i
                                         else (S i cs ts)
 
 
-                                        
+-- sectoresAsignados
+sectoresAsignados :: Tripulante -> Nave -> [SectorId]
+sectoresAsignados t n = sectoresConTripulante t n 
+
+sectoresConTripulante :: Tripulante -> Nave -> [SectorId]
+sectoresConTripulante tr (N t) = sectoresConT tr t 
+
+sectoresConT :: Tripulante -> Tree Sector -> [SectorId]
+sectoresConT t (EmptyT)        = []         
+sectoresConT t (NodeT s t1 t2) = (agregarIdSector t s) ++ sectoresConT t t1 ++ sectoresConT t t2
+
+agregarIdSector :: Tripulante -> Sector -> [SectorId]
+agregarIdSector tr (S i cs ts) = idDeSector tr i ts
+
+idDeSector :: Tripulante -> idSector -> [Tripulante] -> [idSector]
+idDeSector tr i []     = []
+idDeSector tr i (t:ts) = singularSi i (tr==t) ++ (idDeSector tr i ts)
+
+
+
