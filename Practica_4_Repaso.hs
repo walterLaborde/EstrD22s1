@@ -263,3 +263,21 @@ compAgregados cps sid id cs = if sid == id
                                 then cps ++ cs
                                 else cs
 
+-- asignarTripulanteA
+asignarTripulanteA :: Tripulante -> [SectorId] -> Nave -> Nave
+asignarTripulanteA t ids n = asignarASectores t ids n 
+
+asignarASectores :: Tripulante -> [SectorId] -> Nave -> Nave
+asignarASectores tr ids (N t) = (N (asignarAlSector tr ids t))
+
+asignarAlSector :: Tripulante -> [SectorId] -> Tree Sector -> Tree Sector
+asignarAlSector tr (id:ids) (NodeT s t1 t2) = 
+        (NodeT (agregarTripulante tr id s) (asignarAlSector tr ids t1) (asignarAlSector tr ids t2)) 
+
+agregarTripulante :: Tripulante -> SectorId -> Sector -> Sector
+agregarTripulante t id (S i cs ts) = if id == i
+                                        then (S i cs (t:ts))
+                                        else (S i cs ts)
+
+
+                                        
