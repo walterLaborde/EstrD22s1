@@ -299,4 +299,27 @@ idDeSector tr i []     = []
 idDeSector tr i (t:ts) = singularSi i (tr==t) ++ (idDeSector tr i ts)
 
 
+-- tripulantes
+tripulantes :: Nave -> [Tripulante]
+tripulantes (N t) = sinTripRepetidos(todosLosTripulantes t)
+
+todosLosTripulantes :: Tree Sector -> [Tripulante]
+todosLosTripulantes EmptyT          = []
+todosLosTripulantes (NodeT s t1 t2) = tripDelSector s ++ todosLosTripulantes t1 ++ todosLosTripulantes t2 
+
+tripDelSector :: Sector -> [Tripulante]
+tripDelSector (S _ _ ts) = ts
+
+sinTripRepetidos :: [Tripulante] -> [Tripulante]
+sinTripRepetidos []     = []
+sinTripRepetidos (t:ts) = agregarTripSiNoEsta t (sinTripRepetidos ts)
+
+agregarTripSiNoEsta :: Tripulante -> [Tripulante] -> [Tripulante]
+agregarTripSiNoEsta t ts = if (estaIncluidoElTrip t ts)
+                            then ts
+                            else t : ts
+
+estaIncluidoElTrip :: Tripulante -> [Tripulante] -> Bool
+estaIncluidoElTrip t []       = False
+estaIncluidoElTrip t (t1:ts1) = (t == t1) || estaIncluidoElTrip t ts1  
 
