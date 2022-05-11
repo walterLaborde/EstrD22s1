@@ -181,3 +181,26 @@ todosLosCaminos (Bifurcacion c m1 m2) =
 consACada :: a -> [[a]] -> [[a]]
 consACada z []       = []
 consACada z (xs:xss) = (z:xs) : consACada z xss
+
+-- /////////// NAVE ESPACIAL
+
+data Componente = LanzaTorpedos | Motor Int | Almacen [Barril]
+data Barril = Comida | Oxigeno | Torpedo | Combustible
+
+data Sector = S SectorId [Componente] [Tripulante]
+type SectorId = String
+type Tripulante = String
+
+data Tree a = EmptyT | NodeT a (Tree a) (Tree a)
+data Nave = N (Tree Sector)
+
+-- sectores
+sectores :: Nave -> [SectorId]
+sectores (N t) = sectoresT t
+
+sectoresT :: Tree Sector -> [SectorId]
+sectoresT (EmptyT       ) = []
+sectoresT (NodeT s t1 t2) = idSector s : sectoresT t1 ++ sectoresT t2
+
+idSector :: Sector -> SectorId
+idSector (S sid _ _) = sid
