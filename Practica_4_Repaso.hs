@@ -204,3 +204,24 @@ sectoresT (NodeT s t1 t2) = idSector s : sectoresT t1 ++ sectoresT t2
 
 idSector :: Sector -> SectorId
 idSector (S sid _ _) = sid
+
+
+-- poderDePropulsion
+poderDePropulsion :: Nave -> Int
+poderDePropulsion (N t) = poderesDePropulsionDe t
+
+poderesDePropulsionDe :: Tree Sector -> Int
+poderesDePropulsionDe (EmptyT       ) = 0
+poderesDePropulsionDe (NodeT s t1 t2) = propulsion s + poderesDePropulsionDe t1 + poderesDePropulsionDe t2
+
+propulsion :: Sector -> Int
+propulsion (S _ cps _) = poderDeMotores cps
+
+poderDeMotores :: [Componente] -> Int
+poderDeMotores []     = 0
+poderDeMotores (c:cs) = poderMotor c + poderDeMotores cs
+
+poderMotor :: Componente -> Int
+poderMotor (Motor n) = n
+poderMotor _         = 0
+
