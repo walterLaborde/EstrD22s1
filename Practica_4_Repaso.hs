@@ -246,3 +246,20 @@ agregarSiEsAlmacen (Almacen bs) = bs
 agregarSiEsAlmacen _            = []
 
 
+-- agregarASector
+agregarASector :: [Componente] -> SectorId -> Nave -> Nave
+agregarASector cs id (N t) = (N (agregarCompASector cs id t))
+
+agregarCompASector :: [Componente] -> SectorId -> Tree Sector -> Tree Sector 
+agregarCompASector cs id EmptyT          = EmptyT 
+agregarCompASector cs id (NodeT s t1 t2) = 
+        (NodeT (agregarAlSector cs id s) (agregarCompASector cs id t1) (agregarCompASector cs id t2))
+
+agregarAlSector :: [Componente] -> SectorId -> Sector -> Sector
+agregarAlSector cps sid (S id cs ts) = (S id (compAgregados cps sid id cs) ts)
+
+compAgregados :: [Componente] -> SectorId -> SectorId -> [Componente] -> [Componente]
+compAgregados cps sid id cs = if sid == id 
+                                then cps ++ cs
+                                else cs
+
