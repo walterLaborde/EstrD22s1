@@ -153,3 +153,20 @@ hayCaminoHacia d m = if not (esFin m)
 esFin :: Mapa -> Bool
 esFin (Fin c) = True
 esFin _     = False
+
+-- tesorosPorNivel
+tesorosPorNivel :: Mapa -> [[Objeto]]
+tesorosPorNivel (Fin         c      ) = []
+tesorosPorNivel (Bifurcacion c m1 m2) = 
+    singularSi Tesoro (hayTesoroEntre (objetosDe c)) : juntarNiveles (tesorosPorNivel m1) (tesorosPorNivel m2)
+
+
+singularSi :: a -> Bool -> [a]
+singularSi x True = [x] 
+singularSi x _    = []
+
+juntarNiveles :: [[a]] -> [[a]] -> [[a]]
+juntarNiveles []       yss      = yss
+juntarNiveles xss      []       = xss
+juntarNiveles (xs:xss) (ys:yss) = (xs ++ ys) : juntarNiveles xss yss
+
