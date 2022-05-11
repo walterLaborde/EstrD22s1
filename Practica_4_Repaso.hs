@@ -93,3 +93,21 @@ hayTesoroEntre (o:os) = esTesoro o || hayTesoroEntre os
 esTesoro :: Objeto -> Bool
 esTesoro Tesoro = True
 esTesoro _      = False
+
+
+-- hayTesoroEn
+hayTesoroEn :: [Dir] -> Mapa -> Bool
+hayTesoroEn []     m                     = hayTesoroAca m
+hayTesoroEn _      (Fin c)               = error"No puedo seguir caminando"  
+hayTesoroEn (d:ds) (Bifurcacion c m1 m2) = if esMismaDir d Izq
+                                                  then hayTesoroEn ds m1  
+                                                  else hayTesoroEn ds m2
+
+hayTesoroAca :: Mapa -> Bool
+hayTesoroAca (Fin         c      ) = hayTesoroEntre (objetosDe c)
+hayTesoroAca (Bifurcacion c m1 m2) = hayTesoroEntre (objetosDe c)
+
+esMismaDir :: Dir -> Dir -> Bool
+esMismaDir Izq Izq = True
+esMismaDir Der Der = True
+esMismaDir _   _   = False
