@@ -323,3 +323,29 @@ estaIncluidoElTrip :: Tripulante -> [Tripulante] -> Bool
 estaIncluidoElTrip t []       = False
 estaIncluidoElTrip t (t1:ts1) = (t == t1) || estaIncluidoElTrip t ts1  
 
+-- ////////// MANADA DE LOBOS
+
+
+type Presa = String -- nombre de presa
+type Territorio = String -- nombre de territorio
+type Nombre = String -- nombre de lobo
+data Lobo = Cazador Nombre [Presa] Lobo Lobo Lobo
+          | Explorador Nombre [Territorio] Lobo Lobo
+          | Cria Nombre
+data Manada = M Lobo
+
+
+morfi = ["conejo","liebre"] -- ,"ciervo"
+places = ["Alejandria","Ezpeleta","Winsconsin"]
+
+lobito = Cria "Carlos"
+lobCaz = Cazador "Pedro" morfi lobito lobito lobito
+lobExp1 = Explorador "miriam" places lobito lobito
+lobExp2 = Explorador "dalia" places lobito lobito
+
+lobo1 = Cazador "john" morfi 
+            (Explorador "Mary" places lobito lobito)
+            (Explorador "graham" places lobito lobito)
+            (lobito)
+
+manada1 = M lobo1 
