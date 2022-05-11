@@ -349,3 +349,41 @@ lobo1 = Cazador "john" morfi
             (lobito)
 
 manada1 = M lobo1 
+
+-- buenaCaza
+buenaCaza :: Manada -> Bool
+buenaCaza m = cantDeAlimento m > cantidadDeCrias m 
+
+cantDeAlimento :: Manada -> Int
+cantDeAlimento (M l) = cantDePresas l 
+
+cantDePresas :: Lobo -> Int
+cantDePresas (Cazador    _ ps l1 l2 l3) = longitud ps 
+                                        + cantDePresas l1 
+                                        + cantDePresas l2 
+                                        + cantDePresas l3
+cantDePresas (Explorador _ _ l1 l2    ) = cantDePresas l1 
+                                        + cantDePresas l2 
+cantDePresas (Cria       _            ) = 0
+ 
+-- longitud :: [a] -> Int
+-- longitud []     = 0
+-- longitud (n:ns) = 1 + longitud ns
+
+
+cantidadDeCrias :: Manada -> Int
+cantidadDeCrias (M l) = criasDel l 
+
+criasDel :: Lobo -> Int
+criasDel (Cria       _         ) = 0
+criasDel (Explorador _ _ l1 l2   ) = unoSi(esCria l1) + unoSi(esCria l2)
+criasDel (Cazador    _ _ l1 l2 l3) = unoSi(esCria l1) + unoSi(esCria l2) + unoSi(esCria l3)
+
+esCria :: Lobo -> Bool
+esCria (Cria _) = True
+esCria _        = False
+
+unoSi :: Bool -> Int
+unoSi True  = 1
+unoSi False = 0
+
