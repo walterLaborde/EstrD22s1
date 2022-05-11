@@ -225,3 +225,24 @@ poderMotor :: Componente -> Int
 poderMotor (Motor n) = n
 poderMotor _         = 0
 
+
+-- barriles
+barriles :: Nave -> [Barril]
+barriles (N t) = barrilesT t
+
+barrilesT :: Tree Sector -> [Barril]
+barrilesT (EmptyT       ) = []
+barrilesT (NodeT s t1 t2) = barrilesDe s ++ barrilesT t1 ++ barrilesT t2
+
+barrilesDe :: Sector -> [Barril]
+barrilesDe (S _ cps _) = barrilesEn cps
+
+barrilesEn :: [Componente] -> [Barril]
+barrilesEn []     = []
+barrilesEn (c:cs) = agregarSiEsAlmacen c ++ barrilesEn cs 
+
+agregarSiEsAlmacen :: Componente -> [Barril]
+agregarSiEsAlmacen (Almacen bs) = bs
+agregarSiEsAlmacen _            = []
+
+
