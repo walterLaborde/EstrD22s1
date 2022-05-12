@@ -160,5 +160,17 @@ cuadratico por "minimo xs"
 -- USUARIO
 -- /////////////////////
 
+import SetV1
 
+losQuePertenecen :: Eq a => [a] -> Set a -> [a]
+losQuePertenecen ys s = losQueEstanDelSet (setToList s) ys
+
+losQueEstanDelSet :: Eq a => [a] -> [a] -> [a]
+losQueEstanDelSet [] _ = []
+losQueEstanDelSet x:xs ys = if not (pertenece x ys)
+                                then losQueEstanDelSet xs ys
+                                else losQueEstanDelSet x:xs ys
+ 
+-- Dados una lista y un conjunto, devuelve una lista con todos los elementos que pertenecen
+al conjunto.
 
