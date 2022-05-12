@@ -174,3 +174,12 @@ losQueEstanDelSet x:xs ys = if not (pertenece x ys)
 -- Dados una lista y un conjunto, devuelve una lista con todos los elementos que pertenecen
 al conjunto.
 
+sinRepetidos :: Eq a => [a] -> [a]
+sinRepetidos xs = setToList (agregarListaAlSet xs emptyS)
+
+agregarListaAlSet :: Eq a => [a] -> Set a -> Set a
+agregarListaAlSet []     _ = emptyS  
+agregarListaAlSet (x:xs) s = addS x (agregarListaAlSet xs s)  
+
+-- Quita todos los elementos repetidos de la lista dada utilizando un conjunto como estructura
+-- auxiliar.
