@@ -53,3 +53,8 @@ singularSi x _    = []
 unionS :: Eq a => Set a -> Set a -> Set a
 unionS (S xs) (S ys) = S (sinRepetidos (xs ++ ys)) 
 -- Dados dos conjuntos devuelve un conjunto con todos los elementos de ambos. conjuntos.
+
+setToList :: Eq a => Set a -> [a]
+setToList (S xs) = sinRepetidos xs
+
+-- Dado un conjunto devuelve una lista con todos los elementos distintos del conjunto.
