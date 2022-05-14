@@ -46,3 +46,6 @@ sinElElemento y []     = []
 sinElElemento y (x:xs) = singularSi x (not (y == x)) ++ sinElElemento y xs
 -- Borra un elemento del conjunto.
 
+singularSi :: a -> Bool -> [a]
+singularSi x True = [x] 
+singularSi x _    = []
