@@ -6,6 +6,9 @@ data Set a = S [a] Int
     -- el Set no tiene repetidos 
     -- Int representa a la cantidad de elementos que guarda el Set       
 
+-- lo defino porque el usuario lo utiliza cuando recibe un arbol como parametro en la funcion unir todos
+data Tree a = EmptyT | NodeT a (Tree a) (Tree a)
+
 emptyS :: Set a
 emptyS = S [] 0
 -- Crea un conjunto vacío.
