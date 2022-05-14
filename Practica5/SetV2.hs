@@ -28,4 +28,12 @@ belongs :: Eq a => a -> Set a -> Bool
 belongs y (S xs) = pertenece y (sinRepetidos xs)
 -- Dados un elemento y un conjunto indica si el elemento pertenece al conjunto.
 
+sizeS :: Eq a => Set a -> Int
+sizeS (S xs) = longitud (sinRepetidos xs)
+
+longitud :: [a] -> Int
+longitud []     = 0
+longitud (n:ns) = 1 + longitud ns
+-- Devuelve la cantidad de elementos distintos de un conjunto.
+
 
