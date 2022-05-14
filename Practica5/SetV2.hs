@@ -20,4 +20,8 @@ emptyS :: Set a
 emptyS = S []
 -- Crea un conjunto vacío.
 
+addS :: Eq a => a -> Set a -> Set a
+addS y (S xs) = S (y:xs)
+-- Dados un elemento y un conjunto, agrega el elemento al conjunto.
+
 
