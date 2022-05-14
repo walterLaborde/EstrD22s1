@@ -24,4 +24,8 @@ addS :: Eq a => a -> Set a -> Set a
 addS y (S xs) = S (y:xs)
 -- Dados un elemento y un conjunto, agrega el elemento al conjunto.
 
+belongs :: Eq a => a -> Set a -> Bool
+belongs y (S xs) = pertenece y (sinRepetidos xs)
+-- Dados un elemento y un conjunto indica si el elemento pertenece al conjunto.
+
 
