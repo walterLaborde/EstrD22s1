@@ -188,5 +188,8 @@ unirTodos :: Eq a => Tree (Set a) -> Set a
 unirTodos EmptyT          = emptyS
 unirTodos (NodeT x t1 t2) = unionS x (unionS unirTodos t1 unirTodos t2)
 
+-- lo defino porque el usuario lo utiliza cuando recibe un arbol como parametro.
+data Tree a = EmptyT | NodeT a (Tree a) (Tree a)
+
 -- Dado un arbol de conjuntos devuelve un conjunto con la union de todos los conjuntos
 del arbol.
