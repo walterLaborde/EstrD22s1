@@ -49,3 +49,7 @@ sinElElemento y (x:xs) = singularSi x (not (y == x)) ++ sinElElemento y xs
 singularSi :: a -> Bool -> [a]
 singularSi x True = [x] 
 singularSi x _    = []
+
+unionS :: Eq a => Set a -> Set a -> Set a
+unionS (S xs) (S ys) = S (sinRepetidos (xs ++ ys)) 
+-- Dados dos conjuntos devuelve un conjunto con todos los elementos de ambos. conjuntos.
