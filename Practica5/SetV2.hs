@@ -16,5 +16,8 @@ la función "sinRepetidos" que tiene un costo cuadrático ya que es lineal en la
 recursión... y esto genera el costo cuadrático.
 -}
 
+emptyS :: Set a
+emptyS = S []
+-- Crea un conjunto vacío.
 
 
