@@ -36,4 +36,13 @@ longitud []     = 0
 longitud (n:ns) = 1 + longitud ns
 -- Devuelve la cantidad de elementos distintos de un conjunto.
 
+removeS :: Eq a => a -> Set a -> Set a
+removeS y (S xs) = if pertenece y xs
+                        then S (sinElElemento y (sinRepetidos xs))
+                        else S (sinRepetidos xs)
+
+sinElElemento :: Eq a => a -> [a] -> [a]
+sinElElemento y []     = []
+sinElElemento y (x:xs) = singularSi x (not (y == x)) ++ sinElElemento y xs
+-- Borra un elemento del conjunto.
 
