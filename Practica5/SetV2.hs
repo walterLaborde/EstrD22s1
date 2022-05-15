@@ -1,6 +1,6 @@
-SetV2
+-- SetV2
 
-module SetV2 (emptyS,addS,belongs,sizeS,removeS,unionS,setToList)
+module SetV2 (Set,emptyS,addS,belongs,sizeS,removeS,unionS,setToList)
     where
 
 data Set a = S [a]
