@@ -1,4 +1,4 @@
-module Setv1 (emptyS,addS,belongs,sizeS,removeS,unionS,setToList)
+module Setv1 (Set,emptyS,addS,belongs,sizeS,removeS,unionS,setToList)
     where
 
 data Set a = S [a] Int
