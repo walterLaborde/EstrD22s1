@@ -208,3 +208,10 @@ longitud :: [a] -> Int
 longitud []     = 0
 longitud (n:ns) = 1 + longitud ns
 --Cuenta la cantidad de elementos de la cola.
+
+queueToList :: Eq a => Queue a -> [a]
+queueToList (Q []) = []
+queueToList (Q xs) = firstQ (Q xs) : queueToList (dequeue (Q xs))
+
+-- Dada una cola devuelve la lista con los mismos elementos, donde el orden de la lista es el de la cola.
+-- Nota: chequear que los elementos queden en el orden correcto.
