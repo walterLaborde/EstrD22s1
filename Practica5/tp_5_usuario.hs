@@ -225,3 +225,43 @@ unirSegundaAPrimera [] ys     = ys
 unirSegundaAPrimera xs (y:ys) = y : unirSegundaAPrimera ys xs
 
 -- Inserta todos los elementos de la segunda cola en la primera.
+
+-- ///////////////////////
+-- /       STACK         /
+-- ///////////////////////
+
+-- USUARIO
+
+apilar :: [a] -> Stack a
+apilar [] = emptyS
+apilar xs = Stc (reversa xs)
+
+reversa :: [a] -> [a]
+reversa []     = []
+reversa (x:xs) = agregarAlFinal (reversa xs) x
+
+agregarAlFinal :: [a] -> a -> [a]
+agregarAlFinal [] e     = [e]
+agregarAlFinal (x:xs) e = x : agregarAlFinal xs e
+-- Dada una lista devuelve una pila sin alterar el orden de los elementos.
+
+desapilar :: Stack a -> [a]
+desapilar emptyS   = []
+desapilar (Stc xs) = xs
+-- Dada una pila devuelve una lista sin alterar el orden de los elementos.
+
+insertarEnPos :: Int -> a -> Stack a -> Stack a
+insertarEnPos n y (Stc xs) = Stc ((takeN n xs) ++ (y : dropN n xs))
+
+takeN :: Int -> [a] -> [a]
+takeN 0 xs = []
+takeN n [] = []
+takeN n (x:xs) = x : takeN (n-1) xs
+
+dropN :: Int -> [a] -> [a]
+dropN 0 xs = xs
+dropN n [] = []
+dropN n (x:xs) = dropN (n-1) xs
+
+-- Dada una posicion válida en la stack y un elemento, ubica dicho elemento en dicha
+-- posición (se desapilan elementos hasta dicha posición y se inserta en ese lugar).
