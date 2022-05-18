@@ -41,7 +41,7 @@ null' :: [a] -> Bool
 null' [] = True
 null' _ = False
 
-firstQ :: Queue a -> a 
+firstQ :: Queue a -> a --  O(1)
 firstQ (Q xs ys) = if null' xs 
                       then head' ys
                       else head' xs
@@ -51,7 +51,7 @@ head' :: [a] -> a
 head' []     = error "la lista no puede ser vacia"
 head' (x:xs) = x
 
-dequeue :: Queue a -> Queue a
+dequeue :: Queue a -> Queue a -- O(1)
 dequeue (Q xs ys) = if null' xs 
                       then Q xs (tail' ys)
                       else Q (tail' xs) ys
