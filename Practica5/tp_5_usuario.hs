@@ -215,3 +215,13 @@ queueToList (Q xs) = firstQ (Q xs) : queueToList (dequeue (Q xs))
 
 -- Dada una cola devuelve la lista con los mismos elementos, donde el orden de la lista es el de la cola.
 -- Nota: chequear que los elementos queden en el orden correcto.
+
+unionQ :: Eq a => Queue a -> Queue a -> Queue a
+unionQ q1 q2 = Q (queueToList q1 ++ queueToList q2)
+
+unirSegundaAPrimera :: [a] -> [a] -> [a]
+unirSegundaAPrimera xs []     = xs
+unirSegundaAPrimera [] ys     = ys
+unirSegundaAPrimera xs (y:ys) = y : unirSegundaAPrimera ys xs
+
+-- Inserta todos los elementos de la segunda cola en la primera.
