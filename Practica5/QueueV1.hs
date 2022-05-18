@@ -1,7 +1,6 @@
 module QueueV1 (Queue,emptyQ,isEmptyQ,queue,firstQ,dequeue)
     where
 
-{-
 
 data Queue a = Q [a]
 {-
