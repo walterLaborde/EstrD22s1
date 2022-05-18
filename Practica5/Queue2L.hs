@@ -51,12 +51,18 @@ head' :: [a] -> a
 head' []     = error "la lista no puede ser vacia"
 head' (x:xs) = x
 
-dequeue :: Queue a -> Queue a -- O(1)
-dequeue (Q xs ys) = if null' xs 
-                      then Q xs (tail' ys)
+dequeue :: Queue a -> Queue a
+dequeue (Q [] ys) = Q (tail' ys) []
+dequeue (Q xs ys) = if esListaUnitaria xs
+                      then Q ys []
                       else Q (tail' xs) ys
 -- Dada una cola la devuelve sin su primer elemento.
+
+esListaUnitaria :: [a] -> Bool
+esListaUnitaria (x:[]) = True
+esListaUnitaria _      = False
 
 tail' :: [a] -> [a]
 tail' (_:xs) = xs
 tail' _      = error "la lista no puede ser vacia"
+
