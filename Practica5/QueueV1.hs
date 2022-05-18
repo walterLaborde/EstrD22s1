@@ -19,3 +19,6 @@ Inv.Rep.:
 -- dequeue :: Queue a -> Queue a
 -- Dada una cola la devuelve sin su primer elemento.
 
+emptyQ :: Queue a -- O(1)
+emptyQ = Q []
+-- Crea una cola vacía.
