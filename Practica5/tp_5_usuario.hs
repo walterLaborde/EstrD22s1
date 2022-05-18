@@ -193,3 +193,18 @@ data Tree a = EmptyT | NodeT a (Tree a) (Tree a)
 
 -- Dado un arbol de conjuntos devuelve un conjunto con la union de todos los conjuntos
 del arbol.
+
+
+-- =============================================
+-- USUARIO
+-- =============================================
+
+
+lengthQ :: Queue a -> Int
+-- lengthQ (Q []) = 0
+lengthQ (Q xs) = longitud xs
+
+longitud :: [a] -> Int
+longitud []     = 0
+longitud (n:ns) = 1 + longitud ns
+--Cuenta la cantidad de elementos de la cola.
