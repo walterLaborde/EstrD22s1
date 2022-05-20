@@ -51,7 +51,7 @@ head' :: [a] -> a
 head' []     = error "la lista no puede ser vacia"
 head' (x:xs) = x
 
-dequeue :: Queue a -> Queue a
+dequeue :: Queue a -> Queue a -- O()
 dequeue (Q [] ys) = Q (tail' ys) []
 dequeue (Q xs ys) = if esListaUnitaria xs
                       then Q ys []

@@ -233,16 +233,8 @@ unirSegundaAPrimera xs (y:ys) = y : unirSegundaAPrimera ys xs
 -- USUARIO
 
 apilar :: [a] -> Stack a
-apilar [] = emptyS
-apilar xs = Stc (reversa xs)
-
-reversa :: [a] -> [a]
-reversa []     = []
-reversa (x:xs) = agregarAlFinal (reversa xs) x
-
-agregarAlFinal :: [a] -> a -> [a]
-agregarAlFinal [] e     = [e]
-agregarAlFinal (x:xs) e = x : agregarAlFinal xs e
+apilar []     = emptyS
+apilar (x:xs) = push x (apilar xs)
 -- Dada una lista devuelve una pila sin alterar el orden de los elementos.
 
 desapilar :: Stack a -> [a]
