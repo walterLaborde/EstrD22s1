@@ -201,12 +201,11 @@ del arbol.
 
 
 lengthQ :: Queue a -> Int
--- lengthQ (Q []) = 0
-lengthQ (Q xs) = longitud xs
-
-longitud :: [a] -> Int
-longitud []     = 0
-longitud (n:ns) = 1 + longitud ns
+lengthQ :: Queue a -> Int
+lengthQ q = if not (isEmptyQ q) 
+             then 1 + lengthQ (dequeue q)
+             else 0
+             
 --Cuenta la cantidad de elementos de la cola.
 
 queueToList :: Eq a => Queue a -> [a]
