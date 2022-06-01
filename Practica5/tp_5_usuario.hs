@@ -240,17 +240,8 @@ desapilar (Stc xs) = xs
 -- Dada una pila devuelve una lista sin alterar el orden de los elementos.
 
 insertarEnPos :: Int -> a -> Stack a -> Stack a
-insertarEnPos n y (Stc xs) = Stc ((takeN n xs) ++ (y : dropN n xs))
-
-takeN :: Int -> [a] -> [a]
-takeN 0 xs = []
-takeN n [] = []
-takeN n (x:xs) = x : takeN (n-1) xs
-
-dropN :: Int -> [a] -> [a]
-dropN 0 xs = xs
-dropN n [] = []
-dropN n (x:xs) = dropN (n-1) xs
+insertarEnPos 0 y st = push y st
+insertarEnPos n y st = push (top st) (insertarEnPos (n-1) y (pop st))
 
 -- Dada una posicion válida en la stack y un elemento, ubica dicho elemento en dicha
 -- posición (se desapilan elementos hasta dicha posición y se inserta en ese lugar).
