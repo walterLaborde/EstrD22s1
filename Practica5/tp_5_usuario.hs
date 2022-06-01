@@ -217,12 +217,9 @@ queueToList q = if not (isEmptyQ q)
 -- Nota: chequear que los elementos queden en el orden correcto.
 
 unionQ :: Eq a => Queue a -> Queue a -> Queue a
-unionQ q1 q2 = Q (queueToList q1 ++ queueToList q2)
-
-unirSegundaAPrimera :: [a] -> [a] -> [a]
-unirSegundaAPrimera xs []     = xs
-unirSegundaAPrimera [] ys     = ys
-unirSegundaAPrimera xs (y:ys) = y : unirSegundaAPrimera ys xs
+unionQ q1 q2 = if not (isEmptyQ q2) 
+                 then queue (firstQ q2) (unionQ q1 (dequeue q2))
+                 else q1
 
 -- Inserta todos los elementos de la segunda cola en la primera.
 
