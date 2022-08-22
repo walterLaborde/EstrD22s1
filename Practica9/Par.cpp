@@ -47,9 +47,3 @@ Par divisionYResto(int n, int m) {
     return(divRest);
 }
 
-
-int main() {
-    Par parNuevo = consPar(3,2);
-    cout << parNuevo << endl;
-}
-

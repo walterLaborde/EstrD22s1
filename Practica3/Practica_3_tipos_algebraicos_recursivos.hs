@@ -132,6 +132,8 @@ sumarSi True obs y  = cantDeTesorosEn obs + y
 
 -- ==================
 
+data Tree a = EmptyT | NodeT a (Tree a) (Tree a)
+
 -- 2. Tipos arbóreos
 -- 2.1. Árboles binarios
 
